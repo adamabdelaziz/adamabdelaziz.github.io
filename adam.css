@@ -1,0 +1,122 @@
+.paral {
+background-attachment: fixed;
+background-size: cover;
+background-position: 50% 50%;
+text-align: center;
+  min-height: 200px;
+}
+
+.titlearea{
+  min-height: 200px;
+}
+.paralskills {
+background-attachment: fixed;
+background-size: cover;
+background-position: 50% 50%;
+text-align: center;
+}
+.paralheader {
+	text-align: center;
+min-height: 100vh;
+background-attachment: fixed;
+background-size: cover;
+background-position: 50% 50%;
+}
+.vertical-center {
+  min-height: 100%;  /* Fallback for browsers do NOT support vh unit */
+  min-height: 100vh; /* These two lines are counted as one :-)       */
+  display: flex;
+  align-items: center;
+}
+.paralheader p {
+font-size: 24px;
+color:#f5f5f5;
+text-align: center;
+line-height: 60px;
+}
+.paralheader h1 {
+color: rgba(255, 255, 255, 0.8);
+font-size: 60px;
+text-align: center;
+padding-top: 40vh;
+line-height: 100px;
+}
+
+.increase-size{
+   font-size: 4000em;
+}
+.paralheader i {
+color: rgba(255, 255, 255, 0.8);
+font-size: 60px;
+
+line-height: 100px;
+}
+
+.paral p {
+font-size: 24px;
+color:#f5f5f5;
+text-align: center;
+line-height: 60px;
+}
+.paral h1 {
+color: rgba(255, 255, 255, 0.8);
+font-size: 60px;
+text-align: center;
+padding-top: 60px;
+line-height: 100px;
+}
+.paralsec {
+background-image: url("./images/2116.jpg");
+}
+
+.paralsec1 {
+background-color : #000000;
+}
+.imageSize{
+  font-size: 48px;
+}
+.paralsec2 {
+background-image: url("./images/2116.jpg");
+}
+
+.jumbotron{margin-bottom: 0;}
+
+h7 {
+  font-size: 2em;
+  
+
+}
+
+.bg-pink {
+  background-color: #FFC0CB;
+}
+.bg-orange {
+  background-color: #fd7e14;
+}
+.bg-blue {
+  background-color: #0d6efd;
+}
+.bg-indigo {
+  background-color: #6610f2;
+}
+.bg-purple {
+  background-color: #6f42c1;
+}
+.bg-red {
+  background-color: #dc3545;
+}
+
+.bg-darkgray{
+  background-color: #222831;
+}
+
+.bi:hover{
+   color: #FFC0CB;
+}
+.listy{
+  text-align: left;
+  font-size: 24px;
+}
+.projecttitle{
+  color: #ffffff;
+}
