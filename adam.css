@@ -6,6 +6,11 @@ text-align: center;
   min-height: 200px;
 }
 
+@media only screen and (max-width:749px) {
+  .paral {
+    background-attachment: inherit;
+  }
+}
 .titlearea{
   min-height: 200px;
 }
