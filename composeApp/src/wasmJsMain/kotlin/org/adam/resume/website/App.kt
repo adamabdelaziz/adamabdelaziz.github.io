@@ -10,6 +10,7 @@ import androidx.compose.material.Text
 import androidx.compose.runtime.*
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import org.adam.resume.website.ui.AppTheme
 import org.jetbrains.compose.resources.painterResource
 
 import resumewebsite2025.composeapp.generated.resources.Res
@@ -17,7 +18,7 @@ import resumewebsite2025.composeapp.generated.resources.compose_multiplatform
 
 @Composable
 fun App() {
-    MaterialTheme {
+    AppTheme {
         var showContent by remember { mutableStateOf(false) }
         Column(Modifier.fillMaxWidth(), horizontalAlignment = Alignment.CenterHorizontally) {
             Button(onClick = { showContent = !showContent }) {
