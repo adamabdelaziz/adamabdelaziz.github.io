@@ -7,9 +7,11 @@ import androidx.compose.animation.core.infiniteRepeatable
 import androidx.compose.animation.core.rememberInfiniteTransition
 import androidx.compose.animation.core.tween
 import androidx.compose.foundation.Canvas
+import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.offset
+import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
 import androidx.compose.material.Text
 import androidx.compose.runtime.Composable
@@ -21,6 +23,7 @@ import androidx.compose.runtime.remember
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.draw.clip
 import androidx.compose.ui.geometry.Offset
 import androidx.compose.ui.geometry.Size
 import androidx.compose.ui.graphics.Color
@@ -94,8 +97,8 @@ fun WordStorm(wordList: List<String>) {
                 label = "floatingY_$index"
             )
 
-            val animatedOffsetX = (sin(floatingX.toRadians()) * 15).toFloat()
-            val animatedOffsetY = (cos(floatingY.toRadians()) * 15).toFloat()
+            val animatedOffsetX = (sin(floatingX.toRadians()) * 15)
+            val animatedOffsetY = (cos(floatingY.toRadians()) * 15)
 
             val cloudCenterX = centerX + baseX + animatedOffsetX
             val cloudCenterY = centerY + baseY + animatedOffsetY
@@ -119,10 +122,11 @@ fun WordStorm(wordList: List<String>) {
             Box(
                 modifier = Modifier
                     .offset((cloudCenterX - cloudWidth / 2).dp, (cloudCenterY - cloudHeight / 2).dp)
-                    .size(cloudWidth.dp, cloudHeight.dp)
+                    .size((cloudWidth * 1.3f).dp, (cloudHeight * 1.6f).dp)
+                    .clip(CloudShape(cloudWidth, cloudHeight))
+                    .background(Color.LightGray)
+                    .padding(16.dp)
             ) {
-                CloudShape(text = wordPosition.word, modifier = Modifier.fillMaxSize())
-
                 Text(
                     text = wordPosition.word,
                     fontSize = 24.sp,
