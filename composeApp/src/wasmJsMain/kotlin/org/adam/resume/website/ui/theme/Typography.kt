@@ -1,4 +1,4 @@
-package org.adam.resume.website.ui
+package org.adam.resume.website.ui.theme
 
 import androidx.compose.runtime.Immutable
 import androidx.compose.runtime.compositionLocalOf

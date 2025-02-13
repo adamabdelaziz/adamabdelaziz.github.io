@@ -1,7 +1,5 @@
-package org.adam.resume.website.ui
+package org.adam.resume.website.ui.theme
 
-import androidx.compose.material.TextFieldDefaults
-import androidx.compose.runtime.Composable
 import androidx.compose.ui.graphics.Color
 
 val PinkBlush = Color(0xFFEFB8C8) // Pastel Pink
