@@ -22,6 +22,7 @@ kotlin {
                         // Serve sources to debug inside browser
                         add(rootDirPath)
                         add(projectDirPath)
+                        add("$projectDirPath/src/wasmJsMain/resources")
                     }
                 }
             }
@@ -40,9 +41,16 @@ kotlin {
             implementation(compose.components.uiToolingPreview)
             implementation(libs.androidx.lifecycle.viewmodel)
             implementation(libs.androidx.lifecycle.runtime.compose)
+            implementation(libs.coil.compose)
         }
     }
 }
 
+tasks.register<Copy>("copyResources") {
+    from("$projectDir/src/wasmJsMain/resources/")
+    into(layout.buildDirectory.dir("dist"))
+}
 
-
+tasks.named("wasmJsBrowserRun") {
+    dependsOn("copyResources")
+}

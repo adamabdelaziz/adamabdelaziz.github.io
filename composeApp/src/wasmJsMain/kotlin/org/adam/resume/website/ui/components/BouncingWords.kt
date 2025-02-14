@@ -28,8 +28,8 @@ import androidx.compose.ui.unit.sp
 import kotlin.random.Random
 
 @Composable
-fun BouncingWordsAnimation(words: List<String>) {
-    BoxWithConstraints(modifier = Modifier.fillMaxSize()) {
+fun BouncingWordsAnimation(modifier: Modifier = Modifier, words: List<String>) {
+    BoxWithConstraints(modifier = modifier) {
         val containerSize = IntSize(constraints.maxWidth, constraints.maxHeight)
 
         words.forEach { word ->
@@ -70,13 +70,14 @@ fun BouncingWord(word: String, containerSize: IntSize, color: Color, initialVelo
         Surface(
             modifier = Modifier
                 .offset(positionX.value.dp, positionY.value.dp)
+                .padding(16.dp)
                 .clip(CircleShape),
             color = color
         ) {
             Text(
                 text = word,
                 style = TextStyle(color = Color.White, fontSize = 20.sp),
-                modifier = Modifier.padding(8.dp)
+                modifier = Modifier.padding(24.dp)
             )
         }
     }
@@ -96,7 +97,17 @@ private fun randomPosition(containerSize: IntSize) = Offset(
     Random.nextFloat() * containerSize.height
 )
 
-private fun randomVelocity() = Offset(
-    (Random.nextFloat() * 2 + 1) * if (Random.nextBoolean()) 1 else -1,
-    (Random.nextFloat() * 2 + 1) * if (Random.nextBoolean()) 1 else -1
-)
+private fun randomVelocity(): Offset {
+    var xVelocity = Random.nextFloat() * 1.3f + 1
+    var yVelocity = Random.nextFloat() * 1.3f + 1
+
+    while (xVelocity == 0f || yVelocity == 0f) {
+        xVelocity = Random.nextFloat() * 1.3f + 1
+        yVelocity = Random.nextFloat() * 1.3f + 1
+    }
+
+    xVelocity *= if (Random.nextBoolean()) 1 else -1
+    yVelocity *= if (Random.nextBoolean()) 1 else -1
+
+    return Offset(xVelocity, yVelocity)
+}
