@@ -105,9 +105,7 @@ fun HeaderRow(isDarkTheme: Boolean = true, onToggleTheme: (Boolean) -> Unit = {}
 @Composable
 fun PageLayout(viewportSize: ViewportSize, isPortrait: Boolean) {
     val listState = rememberLazyListState()
-    /*
-        TODO: remember for images for caching
-     */
+
     LazyColumn(
         state = listState,
         modifier = Modifier.fillMaxSize().background(CurrentColors.background)
