@@ -41,7 +41,12 @@ kotlin {
             implementation(compose.components.uiToolingPreview)
             implementation(libs.androidx.lifecycle.viewmodel)
             implementation(libs.androidx.lifecycle.runtime.compose)
+
             implementation(libs.coil.compose)
+
+            implementation(libs.composeIcons.simpleIcons)
+            implementation(libs.composeIcons.feather)
+            implementation(libs.composeIcons.lineAwesome)
         }
     }
 }

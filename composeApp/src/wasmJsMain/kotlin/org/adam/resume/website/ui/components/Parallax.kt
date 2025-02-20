@@ -1,6 +1,8 @@
 package org.adam.resume.website.ui.components
 
 import androidx.compose.foundation.Image
+import androidx.compose.foundation.layout.Box
+import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.runtime.Composable
@@ -15,18 +17,19 @@ import org.jetbrains.compose.resources.painterResource
 
 @Composable
 fun ParallaxImage(resource: DrawableResource, scrollOffset: Int, heightPx: Dp) {
-    val parallaxEffect = (scrollOffset / 2).dp
+    val parallaxEffect = (scrollOffset / 3).dp
     val painter = painterResource(resource)
 
-    Image(
-        painter = painter,
-        contentDescription = null,
-        contentScale = ContentScale.Crop,
-        modifier = Modifier
-            .fillMaxWidth()
-            .height(heightPx)
-            .graphicsLayer {
-                translationY = -parallaxEffect.toPx()
-            }
-    )
+    Box(modifier = Modifier.fillMaxWidth().height(heightPx)) {
+        Image(
+            painter = painter,
+            contentDescription = null,
+            contentScale = ContentScale.Crop,
+            modifier = Modifier
+                .fillMaxSize()
+                .graphicsLayer {
+                    translationY = -parallaxEffect.toPx()
+                }
+        )
+    }
 }

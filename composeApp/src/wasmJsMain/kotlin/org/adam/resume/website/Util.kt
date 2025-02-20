@@ -1,5 +1,22 @@
 package org.adam.resume.website
 
+import resumewebsite2025.composeapp.generated.resources.Res
+import resumewebsite2025.composeapp.generated.resources.backgroundImage1
+import resumewebsite2025.composeapp.generated.resources.backgroundImage10
+import resumewebsite2025.composeapp.generated.resources.backgroundImage11
+import resumewebsite2025.composeapp.generated.resources.backgroundImage12
+import resumewebsite2025.composeapp.generated.resources.backgroundImage13
+import resumewebsite2025.composeapp.generated.resources.backgroundImage14
+import resumewebsite2025.composeapp.generated.resources.backgroundImage15
+import resumewebsite2025.composeapp.generated.resources.backgroundImage16
+import resumewebsite2025.composeapp.generated.resources.backgroundImage2
+import resumewebsite2025.composeapp.generated.resources.backgroundImage3
+import resumewebsite2025.composeapp.generated.resources.backgroundImage4
+import resumewebsite2025.composeapp.generated.resources.backgroundImage5
+import resumewebsite2025.composeapp.generated.resources.backgroundImage6
+import resumewebsite2025.composeapp.generated.resources.backgroundImage7
+import resumewebsite2025.composeapp.generated.resources.backgroundImage8
+import resumewebsite2025.composeapp.generated.resources.backgroundImage9
 import kotlin.math.PI
 import kotlin.math.cos
 import kotlin.math.sin
@@ -14,6 +31,10 @@ fun determineYOffset(angle: Float, radius: Float): Float {
 
 fun Float.toRadians(): Float {
     return (this * (PI / 180.0)).toFloat()
+}
+
+fun openUrl(url: String) {
+    js("window.open(url, '_blank')")
 }
 
 
@@ -31,4 +52,30 @@ val WORD_LIST = listOf(
     "MVVM",
 )
 
-val SQURITLE_SQUAD = "https://images-wixmp-ed30a86b8c4ca887773594c2.wixmp.com/f/4d1f087a-24b4-47a0-906b-7f66a07311f9/d631mb4-3de5b9dc-7ad4-409d-9e10-5d17ebc38afe.png/v1/fill/w_1131,h_707,q_70,strp/here_comes_the_squirtle_squad_by_ishmam_d631mb4-pre.jpg?token=eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJ1cm46YXBwOjdlMGQxODg5ODIyNjQzNzNhNWYwZDQxNWVhMGQyNmUwIiwiaXNzIjoidXJuOmFwcDo3ZTBkMTg4OTgyMjY0MzczYTVmMGQ0MTVlYTBkMjZlMCIsIm9iaiI6W1t7ImhlaWdodCI6Ijw9MTgwMCIsInBhdGgiOiJcL2ZcLzRkMWYwODdhLTI0YjQtNDdhMC05MDZiLTdmNjZhMDczMTFmOVwvZDYzMW1iNC0zZGU1YjlkYy03YWQ0LTQwOWQtOWUxMC01ZDE3ZWJjMzhhZmUucG5nIiwid2lkdGgiOiI8PTI4ODAifV1dLCJhdWQiOlsidXJuOnNlcnZpY2U6aW1hZ2Uub3BlcmF0aW9ucyJdfQ.ayblRMVjgTSU9pdOwFVrblTCbp7834JjVKZdiEjj37M"
+val GOOD_IMAGE_LIST = listOf(
+    Res.drawable.backgroundImage3,
+    Res.drawable.backgroundImage10,
+    Res.drawable.backgroundImage14,
+    Res.drawable.backgroundImage15,
+)
+val LIGHT_IMAGE_LIST = listOf(
+    Res.drawable.backgroundImage3,
+    Res.drawable.backgroundImage4,
+    Res.drawable.backgroundImage5,
+    Res.drawable.backgroundImage6,
+    Res.drawable.backgroundImage7,
+    Res.drawable.backgroundImage8,
+    Res.drawable.backgroundImage10,
+    Res.drawable.backgroundImage11,
+    Res.drawable.backgroundImage12,
+    Res.drawable.backgroundImage14,
+    Res.drawable.backgroundImage15,
+)
+
+val DARK_IMAGE_LIST = listOf(
+    Res.drawable.backgroundImage1,
+    Res.drawable.backgroundImage2,
+    Res.drawable.backgroundImage9,
+    Res.drawable.backgroundImage13,
+    Res.drawable.backgroundImage16
+)
