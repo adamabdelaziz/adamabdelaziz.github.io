@@ -37,6 +37,7 @@ import org.adam.resume.website.ui.ViewportSize
 import org.adam.resume.website.ui.borderOnSides
 import org.adam.resume.website.ui.components.HeaderIcon
 import org.adam.resume.website.ui.components.OutlinedText
+import org.adam.resume.website.ui.components.ProjectPager
 import org.adam.resume.website.ui.components.RainingWordsAnimation
 import org.adam.resume.website.ui.components.TextSection
 import org.adam.resume.website.ui.components.ThemeSwitch
@@ -104,7 +105,9 @@ fun HeaderRow(isDarkTheme: Boolean = true, onToggleTheme: (Boolean) -> Unit = {}
 @Composable
 fun PageLayout(viewportSize: ViewportSize, isPortrait: Boolean) {
     val listState = rememberLazyListState()
-
+    /*
+        TODO: remember for images for caching
+     */
     LazyColumn(
         state = listState,
         modifier = Modifier.fillMaxSize().background(CurrentColors.background)
@@ -112,13 +115,15 @@ fun PageLayout(viewportSize: ViewportSize, isPortrait: Boolean) {
         item {
             Box(modifier = Modifier.height(viewportSize.height.dp)) {
                 Image(
-                    painter = painterResource(Res.drawable.backgroundImage10),
+                    painter =  painterResource(Res.drawable.backgroundImage10) ,
                     contentDescription = "Image",
                     modifier = Modifier
                         .fillMaxSize(),
                     contentScale = ContentScale.Crop
                 )
-                //Box(modifier = Modifier.fillMaxSize().background(Color.Black.copy(alpha = 0.3f)))
+
+                Box(modifier = Modifier.fillMaxSize().background(Color.Black.copy(alpha = 0.3f)))
+
                 Column(
                     modifier = Modifier.align(Alignment.Center),
                     horizontalAlignment = Alignment.CenterHorizontally,
@@ -155,9 +160,10 @@ fun PageLayout(viewportSize: ViewportSize, isPortrait: Boolean) {
                 Column(
                     modifier = Modifier.align(Alignment.Center),
                     horizontalAlignment = Alignment.CenterHorizontally,
-                    verticalArrangement = Arrangement.Center
+                    verticalArrangement = Arrangement.Bottom
                 ) {
-                    Text("Site made with Compose for Web", fontSize = 32.sp)
+                    Spacer(modifier =  Modifier.weight(1f))
+                    Text("Site made with Compose for Web", fontSize = 32.sp, color = CurrentColors.onBackground, modifier = Modifier.padding(bottom = 64.dp))
                 }
             }
         }
@@ -194,7 +200,7 @@ fun LandscapeLayout(
             RainingWordsAnimation(modifier = Modifier.fillMaxHeight().weight(3f).clipToBounds(), WORD_LIST)
         }
         Row(modifier = Modifier.fillMaxWidth().weight(1f).background(CurrentColors.background)) {
-            RainingWordsAnimation(modifier = Modifier.fillMaxHeight().weight(3f).clipToBounds(), WORD_LIST)
+            ProjectPager(modifier = Modifier.fillMaxHeight().weight(3f) )
             TextSection(modifier = Modifier.fillMaxHeight().weight(1f).background(CurrentColors.background).borderOnSides(setOf(Side.Left)), text = "Project")
         }
     }
