@@ -111,19 +111,24 @@ fun ProjectView(
 
             Spacer(Modifier.width(16.dp))
 
-            Box(
+            Column(
                 modifier = Modifier
                     .weight(1f)
                     .fillMaxHeight()
-                    .background(CurrentColors.secondary, shape = RoundedCornerShape(16.dp))
-                    .padding(horizontal = 8.dp),
-                contentAlignment = Alignment.Center
+                    .padding(horizontal = 8.dp, vertical = 16.dp)
+                    .background(CurrentColors.secondary, shape = RoundedCornerShape(16.dp)),
+                verticalArrangement = Arrangement.Center,
+                horizontalAlignment = Alignment.CenterHorizontally,
             ) {
-                Text(
-                    text = project.blurb,
-                    color = CurrentColors.onSecondary,
-                    style = CurrentTypography.h2
-                )
+                project.points.forEach { point ->
+                    Text(
+                        text = "• $point",
+                        color = CurrentColors.onSecondary,
+                        style = CurrentTypography.h2,
+                        modifier = Modifier.fillMaxWidth().padding(horizontal = 16.dp, vertical = 4.dp)
+                    )
+                }
+
             }
         }
     }
