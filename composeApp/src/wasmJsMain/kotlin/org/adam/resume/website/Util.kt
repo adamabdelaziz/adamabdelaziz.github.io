@@ -45,11 +45,20 @@ val WORD_LIST = listOf(
     "Compose\nMultiplatform",
     "Kotlin\nMultiplatform",
     "Flows",
+    "LiveData",
     "Coroutines",
     "Dagger\nHilt",
+    "Ktor",
+    "Room",
+    "SQL",
+    "Firebase",
     "Jetpack\nCompose",
     "Retrofit",
     "MVVM",
+    "MVI",
+    "TDD",
+    "Espresso",
+    "Use Cases",
 )
 
 val GOOD_IMAGE_LIST = listOf(

@@ -30,8 +30,6 @@ import kotlinx.coroutines.launch
 import org.adam.resume.website.ui.theme.CurrentColors
 import org.adam.resume.website.ui.theme.CurrentTypography
 
-const val PAGE_COUNT = 3
-
 @Composable
 fun ProjectPager(modifier: Modifier = Modifier) {
     val pagerState = rememberPagerState(initialPage = 0, pageCount = { PAGE_COUNT })
@@ -68,7 +66,7 @@ fun ProjectPager(modifier: Modifier = Modifier) {
                     modifier = Modifier.alpha(if (pagerState.currentPage != (PAGE_COUNT - 1)) 1f else 0f).size(48.dp).padding(end = 8.dp),
                     imageVector = FeatherIcons.ArrowRight,
                     onClick = {
-                        if (pagerState.currentPage < 3) {
+                        if (pagerState.currentPage < PAGE_COUNT) {
                             scope.launch {
                                 pagerState.scrollToPage(pagerState.currentPage + 1)
                             }
@@ -133,6 +131,8 @@ fun ProjectView(
         }
     }
 }
+
+const val PAGE_COUNT = 3
 
 data class Project(
     val title: String,
