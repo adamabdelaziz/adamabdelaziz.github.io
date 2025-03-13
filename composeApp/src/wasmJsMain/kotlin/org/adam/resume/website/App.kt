@@ -3,10 +3,10 @@ package org.adam.resume.website
 import androidx.compose.foundation.ScrollState
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Arrangement
+import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.Spacer
-import androidx.compose.foundation.layout.fillMaxHeight
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
@@ -21,21 +21,20 @@ import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clipToBounds
+import androidx.compose.ui.unit.Dp
 import androidx.compose.ui.unit.dp
 import compose.icons.FeatherIcons
 import compose.icons.feathericons.Github
 import compose.icons.feathericons.Linkedin
 import compose.icons.feathericons.Mail
 import compose.icons.feathericons.Paperclip
-import org.adam.resume.website.ui.Side
 import org.adam.resume.website.ui.ViewportSize
-import org.adam.resume.website.ui.borderOnSides
 import org.adam.resume.website.ui.components.BottomLanding
 import org.adam.resume.website.ui.components.HeaderIcon
 import org.adam.resume.website.ui.components.HeaderIconExtended
-import org.adam.resume.website.ui.components.ProjectPager
+import org.adam.resume.website.ui.components.ProjectColumn
+import org.adam.resume.website.ui.components.ProjectRow
 import org.adam.resume.website.ui.components.RainingWordsAnimation
-import org.adam.resume.website.ui.components.TextSection
 import org.adam.resume.website.ui.components.ThemeSwitch
 import org.adam.resume.website.ui.components.TopLanding
 import org.adam.resume.website.ui.rememberViewportSize
@@ -54,7 +53,7 @@ fun App() {
     val scrollState = rememberScrollState()
 
     val isAtTop = scrollState.value == 0
-    val isAtBottom = scrollState.value  >= (scrollState.maxValue * .65)
+    val isAtBottom = scrollState.value >= (scrollState.maxValue * .65)
 
     AppTheme(colors = if (isDarkTheme) DarkWinterColors else DarkColorsCute) {
         Column(modifier = Modifier.fillMaxSize().background(CurrentColors.background)) {
@@ -162,7 +161,8 @@ fun PageLayout(
 
         if (isPortrait) {
             PortraitLayout(
-                modifier = Modifier.fillMaxWidth().height(viewportSize.height.dp)
+                modifier = Modifier.fillMaxWidth(),
+                height = viewportSize.height.dp,
             )
         } else {
             LandscapeLayout(
@@ -175,27 +175,16 @@ fun PageLayout(
 }
 
 @Composable
-fun PortraitLayout(modifier: Modifier = Modifier) {
+fun PortraitLayout(modifier: Modifier = Modifier, height: Dp) {
+    ProjectColumn(modifier = modifier, height = height)
 }
 
 @Composable
 fun LandscapeLayout(
     modifier: Modifier = Modifier
 ) {
-    Column(modifier = modifier) {
-        Row(modifier = Modifier.fillMaxWidth().weight(1f).background(CurrentColors.background).borderOnSides(sides = setOf(Side.Bottom))) {
-            TextSection(
-                modifier = Modifier.fillMaxHeight().weight(1f).background(CurrentColors.background).borderOnSides(sides = setOf(Side.Right, Side.Bottom)),
-                text = "Skills\nand\nTechnologies"
-            )
-            RainingWordsAnimation(modifier = Modifier.fillMaxHeight().weight(3f).clipToBounds(), WORD_LIST)
-        }
-        Row(modifier = Modifier.fillMaxWidth().weight(1f).background(CurrentColors.background)) {
-            ProjectPager(modifier = Modifier.fillMaxHeight().weight(3f))
-            TextSection(
-                modifier = Modifier.fillMaxHeight().weight(1f).background(CurrentColors.background).borderOnSides(setOf(Side.Left)),
-                text = "Personal\nProjects"
-            )
-        }
+    Box(modifier = modifier) {
+        RainingWordsAnimation(modifier = Modifier.fillMaxSize().clipToBounds(), WORD_LIST)
+        ProjectRow(modifier = Modifier.fillMaxSize())
     }
 }
