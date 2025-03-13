@@ -39,9 +39,13 @@ import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import compose.icons.FeatherIcons
+import compose.icons.feathericons.Github
+import compose.icons.feathericons.Linkedin
+import compose.icons.feathericons.Mail
 import compose.icons.feathericons.Moon
+import compose.icons.feathericons.Paperclip
 import compose.icons.feathericons.Sun
-import org.adam.resume.website.IconColumn
+import org.adam.resume.website.openUrl
 import org.adam.resume.website.ui.theme.CurrentColors
 import org.adam.resume.website.ui.theme.CurrentShapes
 import org.adam.resume.website.ui.theme.CurrentTypography
@@ -119,6 +123,82 @@ fun HeaderIconExtended(
                 )
             }
         }
+    }
+}
+
+@Composable
+fun HeaderRow(
+    modifier: Modifier = Modifier,
+    isDarkTheme: Boolean = true,
+    onToggleTheme: (Boolean) -> Unit = {},
+    isAtBottom: Boolean,
+) {
+    Row(
+        modifier = modifier,
+        horizontalArrangement = Arrangement.SpaceBetween,
+        verticalAlignment = Alignment.CenterVertically
+    ) {
+        ThemeSwitch(
+            modifier = Modifier.background(CurrentColors.background),
+            isDarkTheme = isDarkTheme,
+            onToggleTheme = onToggleTheme
+        )
+        Spacer(Modifier.weight(1f))
+        if (!isAtBottom) {
+            HeaderIcon(
+                onClick = { openUrl("google.com") },
+                imageVector = FeatherIcons.Github,
+            )
+            HeaderIcon(
+                onClick = { openUrl("google.com") },
+                imageVector = FeatherIcons.Linkedin,
+            )
+            HeaderIcon(
+                onClick = { openUrl("google.com") },
+                imageVector = FeatherIcons.Mail,
+            )
+            HeaderIcon(
+                onClick = { openUrl("google.com") },
+                imageVector = FeatherIcons.Paperclip,
+            )
+        }
+    }
+}
+
+
+@Composable
+fun IconColumn(modifier: Modifier = Modifier, ) {
+    Column(
+        modifier = modifier,
+        horizontalAlignment = Alignment.CenterHorizontally,
+        verticalArrangement = Arrangement.Center
+    ) {
+
+        HeaderIconExtended(
+            modifier = Modifier.padding(bottom = 16.dp),
+            onClick = { openUrl("google.com") },
+            imageVector = FeatherIcons.Github,
+            label = "Github"
+        )
+        HeaderIconExtended(
+            modifier = Modifier.padding(bottom = 16.dp),
+            onClick = { openUrl("google.com") },
+            imageVector = FeatherIcons.Linkedin,
+            label = "LinkedIn"
+        )
+        HeaderIconExtended(
+            modifier = Modifier.padding(bottom = 16.dp),
+            onClick = { openUrl("google.com") },
+            imageVector = FeatherIcons.Mail,
+            label = "E-Mail Me"
+        )
+        HeaderIconExtended(
+            modifier = Modifier.padding(bottom = 16.dp),
+            onClick = { openUrl("google.com") },
+            imageVector = FeatherIcons.Paperclip,
+            label = "My Resume"
+        )
+
     }
 }
 

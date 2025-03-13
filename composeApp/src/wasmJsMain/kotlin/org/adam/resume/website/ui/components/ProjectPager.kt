@@ -3,7 +3,6 @@ package org.adam.resume.website.ui.components
 import androidx.compose.animation.Crossfade
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Arrangement
-import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.fillMaxHeight
@@ -29,7 +28,6 @@ import compose.icons.feathericons.ArrowLeft
 import compose.icons.feathericons.ArrowRight
 import compose.icons.feathericons.Github
 import kotlinx.coroutines.launch
-import org.adam.resume.website.WORD_LIST
 import org.adam.resume.website.openUrl
 import org.adam.resume.website.ui.theme.CurrentColors
 import org.adam.resume.website.ui.theme.CurrentTypography
@@ -111,21 +109,18 @@ fun ProjectRow(
 
 @Composable
 fun ProjectColumn(modifier: Modifier = Modifier, height: Dp) {
-    Box(modifier) {
-        RainingWordsAnimation(modifier = Modifier.fillMaxSize(), WORD_LIST)
-        Column(modifier) {
-            projectList.forEach {
-                Column(modifier = modifier.height(height), verticalArrangement = Arrangement.Center, horizontalAlignment = Alignment.CenterHorizontally) {
-                    ProjectView(
-                        modifier = modifier.padding(horizontal = 24.dp)
-                            .background(CurrentColors.secondary, shape = RoundedCornerShape(48.dp)),
-                        project = it
-                    )
-                }
+
+    Column(modifier) {
+        projectList.forEach {
+            Column(modifier = modifier.height(height), verticalArrangement = Arrangement.Center, horizontalAlignment = Alignment.CenterHorizontally) {
+                ProjectView(
+                    modifier = modifier.padding(horizontal = 24.dp)
+                        .background(CurrentColors.secondary, shape = RoundedCornerShape(48.dp)),
+                    project = it
+                )
             }
         }
     }
-
 }
 
 @Composable
