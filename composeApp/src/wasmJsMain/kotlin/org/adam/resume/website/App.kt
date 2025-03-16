@@ -29,8 +29,8 @@ import org.adam.resume.website.ui.components.TopLanding
 import org.adam.resume.website.ui.rememberViewportSize
 import org.adam.resume.website.ui.theme.AppTheme
 import org.adam.resume.website.ui.theme.CurrentColors
-import org.adam.resume.website.ui.theme.DarkColorsCute
-import org.adam.resume.website.ui.theme.DarkWinterColors
+import org.adam.resume.website.ui.theme.DarkColorsBlue
+import org.adam.resume.website.ui.theme.LightColorsBlue
 
 @Composable
 fun App() {
@@ -44,7 +44,7 @@ fun App() {
     val isAtTop = scrollState.value == 0
     val isAtBottom = scrollState.value >= (scrollState.maxValue * .65)
 
-    AppTheme(colors = if (isDarkTheme) DarkWinterColors else DarkColorsCute) {
+    AppTheme(colors = if (isDarkTheme) DarkColorsBlue else LightColorsBlue) {
         Column(modifier = Modifier.fillMaxSize().background(CurrentColors.background)) {
             HeaderRow(
                 isAtBottom = isAtBottom,

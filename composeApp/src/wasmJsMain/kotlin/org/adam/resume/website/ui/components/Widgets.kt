@@ -14,6 +14,7 @@ import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
+import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.Icon
 import androidx.compose.material.IconButton
 import androidx.compose.material.Switch
@@ -167,13 +168,12 @@ fun HeaderRow(
 
 
 @Composable
-fun IconColumn(modifier: Modifier = Modifier, ) {
+fun IconColumn(modifier: Modifier = Modifier) {
     Column(
         modifier = modifier,
         horizontalAlignment = Alignment.CenterHorizontally,
         verticalArrangement = Arrangement.Center
     ) {
-
         HeaderIconExtended(
             modifier = Modifier.padding(bottom = 16.dp),
             onClick = { openUrl("google.com") },
@@ -199,6 +199,13 @@ fun IconColumn(modifier: Modifier = Modifier, ) {
             label = "My Resume"
         )
 
+        Text("Site made with Compose for Web", fontSize = 24.sp, color = CurrentColors.onBackground, modifier = Modifier.padding(bottom = 16.dp))
+        Text(
+            "All photographs used were taken by me",
+            fontSize = 16.sp,
+            color = CurrentColors.onBackground,
+            modifier = Modifier.padding(bottom = 4.dp)
+        )
     }
 }
 
@@ -276,18 +283,8 @@ fun BottomLanding(modifier: Modifier = Modifier) {
             verticalArrangement = Arrangement.Center
         ) {
             Spacer(modifier = Modifier.weight(1f))
-
-            IconColumn(modifier =  Modifier.fillMaxWidth().padding(bottom = 16.dp))
-
+            IconColumn(modifier = Modifier.background(color = CurrentColors.secondary, shape = RoundedCornerShape(48.dp)).fillMaxWidth(0.3f).padding(bottom = 16.dp))
             Spacer(modifier = Modifier.weight(1f))
-
-            Text("Site made with Compose for Web", fontSize = 24.sp, color = CurrentColors.onBackground, modifier = Modifier.padding(bottom = 16.dp))
-            Text(
-                "All photographs used were taken by me",
-                fontSize = 16.sp,
-                color = CurrentColors.onBackground,
-                modifier = Modifier.padding(bottom = 64.dp)
-            )
         }
     }
 }

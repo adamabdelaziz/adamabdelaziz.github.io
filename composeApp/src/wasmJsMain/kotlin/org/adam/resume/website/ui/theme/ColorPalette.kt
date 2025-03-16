@@ -52,6 +52,49 @@ val DarkColorsCute = AppColors(
     warning = CoralSunset,
     success = MintHaven
 )
+val LightColorsBlue = AppColors(
+    primary = FrostbiteBlue,       // Bright icy blue
+    secondary = IcicleGray,        // Soft steel blue
+    background = SoftWhite,        // Light, airy background
+    surface = Ivory,               // Warm creamy white for surfaces
+    error = FrozenRed,             // Cool red for contrast
+    onPrimary = CharcoalBlack,     // Ensuring dark text on blue primary
+    onSecondary = MidnightBlue,    // Deep blue for secondary contrast
+    onBackground = CharcoalBlack,  // Readable text color
+    onSurface = DeepSlate,         // Slightly darkened for contrast
+    onError = SnowWhite,           // Ensuring visibility for error messages
+    warning = ArcticOrange,        // Bright orange for warnings
+    success = PineGreen            // Cool deep green for success
+)
+val DarkColorsBlue = AppColors(
+    primary = MidnightBlue,        // Deep, rich blue
+    secondary = DeepIce,           // Very dark blue-gray
+    background = CharcoalBlack,    // Dark background for contrast
+    surface = DeepSlate,           // Muted dark surface color
+    error = FrozenRed,             // Striking cool red for errors
+    onPrimary = Moonlight,         // White text for dark elements
+    onSecondary = IcicleGray,      // Soft blue for secondary contrast
+    onBackground = SnowWhite,      // Light text for dark theme
+    onSurface = SoftWhite,         // Gentle contrast
+    onError = SnowWhite,           // High contrast error text
+    warning = ArcticOrange,        // Bright, striking orange
+    success = ForestGreen          // Deep green for success messages
+)
+val LightColorsCute = AppColors(
+    primary = CoralSunset,         // Soft warm coral
+    secondary = MintHaven,         // Refreshing pastel green
+    background = SoftWhite,        // Gentle off-white
+    surface = Ivory,               // Warm creamy white
+    error = EmberGlow,             // Soft muted red
+    onPrimary = CharcoalBlack,     // Strong contrast for readability
+    onSecondary = MidnightBlue,    // Dark blue for contrast
+    onBackground = CharcoalBlack,  // Ensuring dark text on light background
+    onSurface = DeepSlate,         // Soft contrast for surfaces
+    onError = SnowWhite,           // Bright error text
+    warning = PumpkinSpice,        // Autumnal orange for warnings
+    success = ForestGreen          // Natural green for success
+)
+
 val DarkColorsPumpkin = AppColors(
     primary = PumpkinSpice,
     secondary = BurntSienna,

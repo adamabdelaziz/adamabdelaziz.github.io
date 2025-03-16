@@ -5,6 +5,7 @@ import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
+import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxHeight
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
@@ -20,6 +21,7 @@ import androidx.compose.runtime.rememberCoroutineScope
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.alpha
+import androidx.compose.ui.text.font.FontStyle
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.Dp
 import androidx.compose.ui.unit.dp
@@ -130,14 +132,14 @@ fun ProjectView(
 ) {
     Column(
         modifier = modifier,
-        verticalArrangement = Arrangement.Center,
+        verticalArrangement = Arrangement.Top,
         horizontalAlignment = Alignment.CenterHorizontally,
     ) {
         Text(
             text = project.title,
             color = CurrentColors.onSecondary,
             style = CurrentTypography.h1,
-            modifier = Modifier.fillMaxWidth().padding(vertical = 16.dp),
+            modifier = Modifier.fillMaxWidth().padding(vertical = 32.dp),
             textAlign = TextAlign.Center
         )
 
@@ -146,7 +148,7 @@ fun ProjectView(
             color = CurrentColors.onSecondary,
             style = CurrentTypography.h2,
             textAlign = TextAlign.Center,
-            modifier = Modifier.fillMaxWidth().padding(horizontal = 32.dp, vertical = 16.dp)
+            modifier = Modifier.fillMaxWidth().padding(horizontal = 32.dp, vertical = 20.dp)
         )
 
         project.points.forEach { point ->
@@ -154,14 +156,26 @@ fun ProjectView(
                 text = "• $point",
                 color = CurrentColors.onSecondary,
                 style = CurrentTypography.h2,
-                modifier = Modifier.fillMaxWidth().padding(horizontal = 16.dp, vertical = 16.dp)
+                modifier = Modifier.fillMaxWidth().padding(horizontal = 16.dp, vertical = 12.dp)
             )
         }
 
-        project.githubUrl?.let {
+        Spacer(Modifier.weight(1f))
+
+        if (project.githubUrl != null) {
             HeaderIcon(
-                onClick = { openUrl(it) },
+                modifier = Modifier.size(96.dp).padding(vertical = 12.dp),
+                onClick = { openUrl(project.githubUrl) },
                 imageVector = FeatherIcons.Github,
+            )
+        } else {
+            Text(
+                text = "Github link to come",
+                color = CurrentColors.onSecondary,
+                style = CurrentTypography.h3,
+                fontStyle = FontStyle.Italic,
+                textAlign = TextAlign.Center,
+                modifier = Modifier.fillMaxWidth().padding(vertical = 12.dp)
             )
         }
     }
@@ -183,7 +197,8 @@ val kovidProject = Project(
         "Used a now deprecated COVID-19 API to fetch data for the USA as well as each state",
         "MVVM architecture with LiveData and viewbinding with XML for UI",
         "Hilt for dependency injection and Jetpack Room for persistence"
-    )
+    ),
+    githubUrl = "https://github.com/adamabdelaziz/Kovid/tree/master"
 )
 
 val kryptoProject = Project(
@@ -205,7 +220,8 @@ val composeWeather = Project(
         "MVVM architecture with LiveData and Jetpack Compose for UI",
         "Jetpack Room for persistence and DataStore for user settings",
         "Hilt for dependency injection and Retrofit for network calls"
-    )
+    ),
+    githubUrl = "https://github.com/adamabdelaziz/ComposeWeather/tree/main"
 )
 
 val projectList = listOf(kryptoProject, composeWeather, kovidProject)
