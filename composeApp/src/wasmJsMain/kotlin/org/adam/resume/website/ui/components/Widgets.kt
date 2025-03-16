@@ -46,6 +46,10 @@ import compose.icons.feathericons.Mail
 import compose.icons.feathericons.Moon
 import compose.icons.feathericons.Paperclip
 import compose.icons.feathericons.Sun
+import org.adam.resume.website.GITHUB_URL
+import org.adam.resume.website.LINKEDIN_URL
+import org.adam.resume.website.openEmail
+import org.adam.resume.website.openPdf
 import org.adam.resume.website.openUrl
 import org.adam.resume.website.ui.theme.CurrentColors
 import org.adam.resume.website.ui.theme.CurrentShapes
@@ -147,19 +151,19 @@ fun HeaderRow(
         Spacer(Modifier.weight(1f))
         if (!isAtBottom) {
             HeaderIcon(
-                onClick = { openUrl("google.com") },
+                onClick = { openUrl(GITHUB_URL) },
                 imageVector = FeatherIcons.Github,
             )
             HeaderIcon(
-                onClick = { openUrl("google.com") },
+                onClick = { openUrl(LINKEDIN_URL) },
                 imageVector = FeatherIcons.Linkedin,
             )
             HeaderIcon(
-                onClick = { openUrl("google.com") },
+                onClick = { openEmail() },
                 imageVector = FeatherIcons.Mail,
             )
             HeaderIcon(
-                onClick = { openUrl("google.com") },
+                onClick = { openPdf() },
                 imageVector = FeatherIcons.Paperclip,
             )
         }
@@ -176,25 +180,25 @@ fun IconColumn(modifier: Modifier = Modifier) {
     ) {
         HeaderIconExtended(
             modifier = Modifier.padding(bottom = 16.dp),
-            onClick = { openUrl("google.com") },
+            onClick = { openUrl(GITHUB_URL) },
             imageVector = FeatherIcons.Github,
             label = "Github"
         )
         HeaderIconExtended(
             modifier = Modifier.padding(bottom = 16.dp),
-            onClick = { openUrl("google.com") },
+            onClick = { openUrl(LINKEDIN_URL) },
             imageVector = FeatherIcons.Linkedin,
             label = "LinkedIn"
         )
         HeaderIconExtended(
             modifier = Modifier.padding(bottom = 16.dp),
-            onClick = { openUrl("google.com") },
+            onClick = { openEmail() },
             imageVector = FeatherIcons.Mail,
             label = "E-Mail Me"
         )
         HeaderIconExtended(
             modifier = Modifier.padding(bottom = 16.dp),
-            onClick = { openUrl("google.com") },
+            onClick = { openPdf() },
             imageVector = FeatherIcons.Paperclip,
             label = "My Resume"
         )
@@ -283,7 +287,9 @@ fun BottomLanding(modifier: Modifier = Modifier) {
             verticalArrangement = Arrangement.Center
         ) {
             Spacer(modifier = Modifier.weight(1f))
-            IconColumn(modifier = Modifier.background(color = CurrentColors.secondary, shape = RoundedCornerShape(48.dp)).fillMaxWidth(0.3f).padding(bottom = 16.dp))
+            IconColumn(
+                modifier = Modifier.background(color = CurrentColors.secondary, shape = RoundedCornerShape(48.dp)).fillMaxWidth(0.3f).padding(bottom = 16.dp)
+            )
             Spacer(modifier = Modifier.weight(1f))
         }
     }

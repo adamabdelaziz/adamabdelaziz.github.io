@@ -37,6 +37,21 @@ fun openUrl(url: String) {
     js("window.open(url, '_blank')")
 }
 
+fun openPdf() {
+    val pdfUrl = "composeApp/src/commonMain/composeResources/drawable/AdamAbdelazizResume.pdf"
+    openUrl(pdfUrl)
+}
+
+fun openEmail(to: String = "adam.a.abdelaziz@gmail.com", subject: String = "From your GitHub page", body: String = "") {
+    val mailtoLink = "mailto:$to?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}"
+    openUrl(mailtoLink)
+}
+
+@JsFun("encodeURIComponent")
+external fun encodeURIComponent(str: String): String
+
+const val GITHUB_URL = "https://github.com/adamabdelaziz"
+const val LINKEDIN_URL = "https://www.linkedin.com/in/adam-abdelaziz/"
 
 val WORD_LIST = listOf(
     "Kotlin",
