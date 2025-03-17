@@ -96,9 +96,7 @@ fun HeaderIconExtended(
             .background(if (isHovered) CurrentColors.background else Color.Transparent)
             .animateContentSize()
             .pointerHoverIcon(PointerIcon.Hand)
-            .clickable {
-                onClick()
-            }
+            .clickable { onClick() }
             .onPointerEvent(PointerEventType.Enter) { isHovered = true }
             .onPointerEvent(PointerEventType.Exit) { isHovered = false },
         contentAlignment = Alignment.CenterStart
