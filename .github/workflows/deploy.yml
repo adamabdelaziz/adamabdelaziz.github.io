@@ -9,7 +9,7 @@ on:
 permissions:
   contents: read
   pages: write
-  id-token: write 
+  id-token: write
 
 jobs:
   build-and-deploy:
@@ -32,6 +32,11 @@ jobs:
 
       - name: "🛠️ Build WasmJS App"
         run: ./gradlew wasmJsBrowserDistribution
+
+      - name: "📂 Copy PDF to Static Folder"
+        run: |
+          mkdir -p composeApp/build/dist/wasmJs/productionExecutable/static
+          cp composeApp/src/commonMain/composeResources/drawable/AdamAbdelazizResume.pdf composeApp/build/dist/wasmJs/productionExecutable/static/
 
       - name: "📄 Configure GitHub Pages"
         uses: actions/configure-pages@v5

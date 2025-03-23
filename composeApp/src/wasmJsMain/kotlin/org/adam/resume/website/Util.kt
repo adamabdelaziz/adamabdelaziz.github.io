@@ -38,7 +38,8 @@ fun openUrl(url: String) {
 }
 
 fun openPdf() {
-    val pdfUrl = "composeApp/src/commonMain/composeResources/drawable/AdamAbdelazizResume.pdf"
+    //val pdfUrl = "composeApp/src/commonMain/composeResources/drawable/AdamAbdelazizResume.pdf"
+    val pdfUrl = "https://adamabdelaziz.github.io/ResumeWebsite/static/AdamAbdelazizResume.pdf"
     openUrl(pdfUrl)
 }
 
