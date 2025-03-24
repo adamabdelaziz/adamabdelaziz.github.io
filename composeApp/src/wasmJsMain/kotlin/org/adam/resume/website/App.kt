@@ -82,14 +82,14 @@ fun PageLayout(
             )
         }
 
-        BottomLanding(modifier = Modifier.height(viewportSize.height.dp))
+        BottomLanding(modifier = Modifier.height(viewportSize.height.dp), isPortrait = isPortrait)
     }
 }
 
 @Composable
 fun PortraitLayout(modifier: Modifier = Modifier, height: Dp) {
     Box(modifier) {
-        RainingWordsAnimation(modifier = Modifier.fillMaxSize(), WORD_LIST)
+        RainingWordsAnimation(modifier = Modifier.fillMaxWidth().height(height.times(1.2f)).clipToBounds(), WORD_LIST)
         ProjectColumn(modifier = modifier, height = height)
     }
 }

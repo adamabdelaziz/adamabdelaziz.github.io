@@ -177,7 +177,7 @@ fun IconColumn(modifier: Modifier = Modifier) {
         verticalArrangement = Arrangement.Center
     ) {
         HeaderIconExtended(
-            modifier = Modifier.padding(bottom = 16.dp),
+            modifier = Modifier.padding(vertical = 16.dp),
             onClick = { openUrl(GITHUB_URL) },
             imageVector = FeatherIcons.Github,
             label = "Github"
@@ -270,7 +270,7 @@ fun TopLanding(modifier: Modifier = Modifier) {
 }
 
 @Composable
-fun BottomLanding(modifier: Modifier = Modifier) {
+fun BottomLanding(modifier: Modifier = Modifier, isPortrait: Boolean) {
     Box(modifier = modifier) {
         Image(
             painter = painterResource(Res.drawable.backgroundImage15),
@@ -286,7 +286,8 @@ fun BottomLanding(modifier: Modifier = Modifier) {
         ) {
             Spacer(modifier = Modifier.weight(1f))
             IconColumn(
-                modifier = Modifier.background(color = CurrentColors.secondary, shape = RoundedCornerShape(48.dp)).fillMaxWidth(0.3f).padding(bottom = 16.dp)
+                modifier = Modifier.background(color = CurrentColors.secondary, shape = RoundedCornerShape(48.dp)).fillMaxWidth(if (isPortrait) 0.5f else 0.3f)
+                    .padding(bottom = 16.dp)
             )
             Spacer(modifier = Modifier.weight(1f))
         }

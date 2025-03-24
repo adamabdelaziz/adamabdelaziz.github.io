@@ -37,11 +37,7 @@ fun openUrl(url: String) {
     js("window.open(url, '_blank')")
 }
 
-fun openPdf() {
-    //val pdfUrl = "composeApp/src/commonMain/composeResources/drawable/AdamAbdelazizResume.pdf"
-    val pdfUrl = "https://adamabdelaziz.github.io/ResumeWebsite/static/AdamAbdelazizResume.pdf"
-    openUrl(pdfUrl)
-}
+fun openPdf() = openUrl(RESUME_URL)
 
 fun openEmail(to: String = "adam.a.abdelaziz@gmail.com", subject: String = "From your GitHub page", body: String = "") {
     val mailtoLink = "mailto:$to?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}"
@@ -53,6 +49,7 @@ external fun encodeURIComponent(str: String): String
 
 const val GITHUB_URL = "https://github.com/adamabdelaziz"
 const val LINKEDIN_URL = "https://www.linkedin.com/in/adam-abdelaziz/"
+const val RESUME_URL = "https://adamabdelaziz.github.io/ResumeWebsite/static/AdamAbdelazizResume.pdf" //TODO: Change when replacing old website
 
 val WORD_LIST = listOf(
     "Kotlin",

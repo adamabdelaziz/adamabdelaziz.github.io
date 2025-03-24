@@ -9,7 +9,6 @@ import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxHeight
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
-import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.pager.HorizontalPager
@@ -101,7 +100,7 @@ fun ProjectRow(
     Row(modifier = modifier, verticalAlignment = Alignment.CenterVertically, horizontalArrangement = Arrangement.Center) {
         projectList.forEach {
             ProjectView(
-                modifier = Modifier.weight(1f).fillMaxHeight(0.4f).padding(horizontal = 16.dp)
+                modifier = Modifier.weight(1f).fillMaxHeight(0.7f).padding(horizontal = 16.dp)
                     .background(CurrentColors.secondary, shape = RoundedCornerShape(48.dp)),
                 project = it
             )
@@ -111,10 +110,9 @@ fun ProjectRow(
 
 @Composable
 fun ProjectColumn(modifier: Modifier = Modifier, height: Dp) {
-
     Column(modifier) {
         projectList.forEach {
-            Column(modifier = modifier.height(height), verticalArrangement = Arrangement.Center, horizontalAlignment = Alignment.CenterHorizontally) {
+            Column(modifier = modifier.padding(vertical = 48.dp), verticalArrangement = Arrangement.Center, horizontalAlignment = Alignment.CenterHorizontally) {
                 ProjectView(
                     modifier = modifier.padding(horizontal = 24.dp)
                         .background(CurrentColors.secondary, shape = RoundedCornerShape(48.dp)),
