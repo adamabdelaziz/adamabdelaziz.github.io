@@ -9,6 +9,7 @@ import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxHeight
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
+import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.pager.HorizontalPager
@@ -24,6 +25,7 @@ import androidx.compose.ui.text.font.FontStyle
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.Dp
 import androidx.compose.ui.unit.dp
+import androidx.compose.ui.unit.times
 import compose.icons.FeatherIcons
 import compose.icons.feathericons.ArrowLeft
 import compose.icons.feathericons.ArrowRight
@@ -94,6 +96,38 @@ fun ProjectPager(modifier: Modifier = Modifier) {
 }
 
 @Composable
+fun ProjectStack(modifier: Modifier = Modifier, height: Dp) {
+    Column(modifier, verticalArrangement = Arrangement.Center, horizontalAlignment = Alignment.CenterHorizontally) {
+        Text(
+            text = "Skills and Projects",
+            color = CurrentColors.onSecondary,
+            style = CurrentTypography.h1,
+            modifier = Modifier.fillMaxWidth().padding(vertical = 32.dp),
+            textAlign = TextAlign.Center
+        )
+        projectList.forEachIndexed { index, project ->
+            val isEven = index % 2 == 0
+            Row(
+                modifier = Modifier.fillMaxWidth().height(0.7f * height),
+                verticalAlignment = Alignment.CenterVertically,
+                horizontalArrangement = Arrangement.Start
+            ) {
+                if (isEven) Spacer(Modifier.weight(1f))
+
+                ProjectView(
+                    modifier = Modifier.weight(1f).fillMaxHeight(0.9f).padding(horizontal = 16.dp)
+                        .background(CurrentColors.secondary, shape = RoundedCornerShape(48.dp)),
+                    project = project
+                )
+
+                if (!isEven) Spacer(Modifier.weight(1f))
+            }
+        }
+    }
+
+}
+
+@Composable
 fun ProjectRow(
     modifier: Modifier = Modifier,
 ) {
@@ -112,7 +146,11 @@ fun ProjectRow(
 fun ProjectColumn(modifier: Modifier = Modifier, height: Dp) {
     Column(modifier) {
         projectList.forEach {
-            Column(modifier = modifier.padding(vertical = 48.dp), verticalArrangement = Arrangement.Center, horizontalAlignment = Alignment.CenterHorizontally) {
+            Column(
+                modifier = modifier.padding(vertical = 48.dp),
+                verticalArrangement = Arrangement.Center,
+                horizontalAlignment = Alignment.CenterHorizontally
+            ) {
                 ProjectView(
                     modifier = modifier.padding(horizontal = 24.dp)
                         .background(CurrentColors.secondary, shape = RoundedCornerShape(48.dp)),
