@@ -57,6 +57,7 @@ val WORD_LIST = listOf(
     "Koin",
     "Compose\nMultiplatform",
     "Kotlin\nMultiplatform",
+    "Spring\nBoot",
     "Flows",
     "LiveData",
     "Coroutines",
