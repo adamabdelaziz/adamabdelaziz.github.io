@@ -1,3 +1,4 @@
+@file:OptIn(ExperimentalWasmDsl::class)
 
 import org.jetbrains.kotlin.gradle.ExperimentalWasmDsl
 import org.jetbrains.kotlin.gradle.targets.js.webpack.KotlinWebpackConfig
@@ -11,7 +12,10 @@ plugins {
 kotlin {
     @OptIn(ExperimentalWasmDsl::class)
     wasmJs {
-        moduleName = "composeApp"
+        compilerOptions {
+            freeCompilerArgs.add("-Xwasm-attach-js-exception")
+        }
+        outputModuleName = "composeApp"
         browser {
             val rootDirPath = project.rootDir.path
             val projectDirPath = project.projectDir.path
@@ -38,11 +42,11 @@ kotlin {
             implementation(compose.material)
             implementation(compose.ui)
             implementation(compose.components.resources)
-            implementation(compose.components.uiToolingPreview)
-            implementation(libs.androidx.lifecycle.viewmodel)
-            implementation(libs.androidx.lifecycle.runtime.compose)
+            //implementation(compose.components.uiToolingPreview)
+            //implementation(libs.androidx.lifecycle.viewmodel)
+            ///implementation(libs.androidx.lifecycle.runtime.compose)
 
-            implementation(libs.coil.compose)
+           // implementation(libs.coil.compose)
 
             implementation(libs.composeIcons.simpleIcons)
             implementation(libs.composeIcons.feather)
@@ -56,6 +60,6 @@ tasks.register<Copy>("copyResources") {
     into(layout.buildDirectory.dir("dist"))
 }
 
-tasks.named("wasmJsBrowserRun") {
+tasks.named("wasmJsBrowserDevelopmentRun") {
     dependsOn("copyResources")
 }

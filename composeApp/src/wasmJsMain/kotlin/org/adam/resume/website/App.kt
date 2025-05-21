@@ -2,12 +2,7 @@ package org.adam.resume.website
 
 import androidx.compose.foundation.ScrollState
 import androidx.compose.foundation.background
-import androidx.compose.foundation.layout.Box
-import androidx.compose.foundation.layout.Column
-import androidx.compose.foundation.layout.fillMaxSize
-import androidx.compose.foundation.layout.fillMaxWidth
-import androidx.compose.foundation.layout.height
-import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.rememberScrollState
 import androidx.compose.foundation.verticalScroll
 import androidx.compose.runtime.Composable
@@ -21,14 +16,7 @@ import androidx.compose.ui.unit.Dp
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.times
 import org.adam.resume.website.ui.ViewportSize
-import org.adam.resume.website.ui.components.BottomLanding
-import org.adam.resume.website.ui.components.HeaderRow
-import org.adam.resume.website.ui.components.ProjectColumn
-import org.adam.resume.website.ui.components.ProjectRow
-import org.adam.resume.website.ui.components.ProjectStack
-import org.adam.resume.website.ui.components.RainingWordsAnimation
-import org.adam.resume.website.ui.components.TopLanding
-import org.adam.resume.website.ui.components.projectList
+import org.adam.resume.website.ui.components.*
 import org.adam.resume.website.ui.rememberViewportSize
 import org.adam.resume.website.ui.theme.AppTheme
 import org.adam.resume.website.ui.theme.CurrentColors
