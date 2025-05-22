@@ -13,6 +13,8 @@ data class SiteState(
     val isDarkTheme: Boolean = true,
     val outlinedText: String = "Software Engineer",
     val viewportSize: ViewportSize = ViewportSize(0, 0),
+    val clickedSkill: String? = null,
+    val clickedProject: String? = null,
 )
 
 sealed class SiteEvent {
@@ -64,11 +66,11 @@ class SiteViewModel : ViewModel() {
             }
 
             is SiteEvent.OnSkillClicked -> {
-
+                _state.value = _state.value.copy(clickedSkill = event.skill)
             }
 
             is SiteEvent.OnProjectClicked -> {
-
+                _state.value = _state.value.copy(clickedProject = event.project)
             }
         }
     }

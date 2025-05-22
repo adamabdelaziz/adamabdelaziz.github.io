@@ -9,6 +9,7 @@ import androidx.compose.animation.fadeOut
 import androidx.compose.animation.scaleIn
 import androidx.compose.animation.togetherWith
 import androidx.compose.foundation.background
+import androidx.compose.foundation.border
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
@@ -37,6 +38,7 @@ import org.adam.resume.website.SiteEvent
 import org.adam.resume.website.SiteState
 import org.adam.resume.website.SiteTabs
 import org.adam.resume.website.WORD_LIST
+import org.adam.resume.website.thenIf
 import org.adam.resume.website.ui.components.HeaderRowNew
 import org.adam.resume.website.ui.components.OutlinedText
 import org.adam.resume.website.ui.components.projectList
@@ -150,7 +152,8 @@ fun ProjectsSection(
                 modifier = Modifier.fillMaxWidth().background(CurrentColors.surface, shape = RoundedCornerShape(24.dp)),
                 state = state,
                 onClick = { onEvent(SiteEvent.OnProjectClicked(it)) },
-                wordList = projectList.map { it.title }
+                wordList = projectList.map { it.title },
+                clickedWord = state.clickedProject
             )
         }
         /*
@@ -192,6 +195,7 @@ fun SkillsAndTechnologiesSection(
                 modifier = Modifier.fillMaxWidth().background(CurrentColors.surface, shape = RoundedCornerShape(24.dp)),
                 state = state,
                 onClick = { onEvent(SiteEvent.OnSkillClicked(it)) },
+                clickedWord = state.clickedSkill
             )
         }
         /*
@@ -215,6 +219,7 @@ fun WordGrid(
     wordList: List<String> = WORD_LIST,
     state: SiteState,
     onClick: (String) -> Unit = {},
+    clickedWord: String? = null,
 ) {
     val cornerOptions = listOf(8.dp, 16.dp, 24.dp, 32.dp)
     val colors = CurrentColors.listColors
@@ -230,12 +235,13 @@ fun WordGrid(
             val backgroundColor = remember(state.isDarkTheme) {
                 colors.random()
             }
-            val cornerRadius = remember { 16.dp }
+            val clicked = word == clickedWord
 
             Box(
                 modifier = Modifier
                     .clickable { onClick(word) }
-                    .clip(RoundedCornerShape(cornerRadius))
+                    .thenIf(clicked, Modifier.border(2.dp, CurrentColors.onSecondary, RoundedCornerShape(24.dp)))
+                    .clip(RoundedCornerShape(if (clicked) 24.dp else 16.dp))
                     .background(backgroundColor)
                     .padding(16.dp),
                 contentAlignment = Alignment.Center

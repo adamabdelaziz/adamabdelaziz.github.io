@@ -1,5 +1,6 @@
 package org.adam.resume.website
 
+import androidx.compose.ui.Modifier
 import resumewebsite2025.composeapp.generated.resources.Res
 import resumewebsite2025.composeapp.generated.resources.backgroundImage1
 import resumewebsite2025.composeapp.generated.resources.backgroundImage10
@@ -31,6 +32,10 @@ fun determineYOffset(angle: Float, radius: Float): Float {
 
 fun Float.toRadians(): Float {
     return (this * (PI / 180.0)).toFloat()
+}
+
+fun Modifier.thenIf(condition: Boolean, modifier: Modifier): Modifier {
+    return this.then(modifier.takeIf { condition } ?: Modifier)
 }
 
 fun openUrl(url: String) {

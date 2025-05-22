@@ -4,6 +4,7 @@ import androidx.compose.foundation.rememberScrollState
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.remember
+import kotlinx.browser.document
 import org.adam.resume.website.ui.landscape.LandscapeLayoutNew
 import org.adam.resume.website.ui.portrait.PortraitLayoutNew
 import org.adam.resume.website.ui.rememberViewportSize
@@ -33,3 +34,4 @@ fun App() {
         )
     }
 }
+
