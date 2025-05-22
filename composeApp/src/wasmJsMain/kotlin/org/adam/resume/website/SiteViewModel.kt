@@ -6,22 +6,28 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import kotlinx.coroutines.isActive
 import kotlinx.coroutines.launch
+import org.adam.resume.website.ui.ViewportSize
 
 data class SiteState(
     val selectedTab: SiteTabs = SiteTabs.ABOUT,
     val isDarkTheme: Boolean = true,
     val outlinedText: String = "Software Engineer",
+    val viewportSize: ViewportSize = ViewportSize(0, 0),
 )
 
 sealed class SiteEvent {
     data class OnTabSelected(val tab: SiteTabs) : SiteEvent()
+    data class OnViewportSizeChanged(val viewportSize: ViewportSize) : SiteEvent()
     data object OnToggleThemeClicked : SiteEvent()
+    data class OnSkillClicked(val skill: String) : SiteEvent()
+    data class OnProjectClicked(val project: String) : SiteEvent()
 }
 
 
 enum class SiteTabs(val title: String) {
     ABOUT("About"),
-    SKILLS_AND_PROJECTS("Skills and Projects"),
+    SKILLS_AND_TECHNOLOGIES("Skills and Technologies"),
+    PROJECTS("Projects"),
 }
 
 class SiteViewModel : ViewModel() {
@@ -51,6 +57,18 @@ class SiteViewModel : ViewModel() {
 
             is SiteEvent.OnToggleThemeClicked -> {
                 _state.value = _state.value.copy(isDarkTheme = !_state.value.isDarkTheme)
+            }
+
+            is SiteEvent.OnViewportSizeChanged -> {
+                _state.value = _state.value.copy(viewportSize = event.viewportSize)
+            }
+
+            is SiteEvent.OnSkillClicked -> {
+
+            }
+
+            is SiteEvent.OnProjectClicked -> {
+
             }
         }
     }

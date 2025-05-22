@@ -159,7 +159,7 @@ fun HeaderRowNew(
                 Text(
                     text = tab.title,
                     modifier = Modifier
-                        .padding(horizontal = 8.dp)
+                        .padding(end = 48.dp)
                         .clickable { onEvent(SiteEvent.OnTabSelected(tab)) },
                     color = CurrentColors.onBackground,
                     style = CurrentTypography.h3,

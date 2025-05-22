@@ -9,6 +9,7 @@ import androidx.compose.animation.fadeOut
 import androidx.compose.animation.scaleIn
 import androidx.compose.animation.togetherWith
 import androidx.compose.foundation.background
+import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
@@ -38,13 +39,11 @@ import org.adam.resume.website.SiteTabs
 import org.adam.resume.website.WORD_LIST
 import org.adam.resume.website.ui.components.HeaderRowNew
 import org.adam.resume.website.ui.components.OutlinedText
+import org.adam.resume.website.ui.components.projectList
 import org.adam.resume.website.ui.theme.AppTheme
 import org.adam.resume.website.ui.theme.CurrentColors
-import org.adam.resume.website.ui.theme.CurrentTypography
 import org.adam.resume.website.ui.theme.DarkPastelAppColors
-import org.adam.resume.website.ui.theme.DarkPastelColors
 import org.adam.resume.website.ui.theme.LightPastelAppColors
-import org.adam.resume.website.ui.theme.LightPastelColors
 
 @Composable
 fun LandscapeLayoutNew(
@@ -124,14 +123,49 @@ fun ContentSection(
                     AboutSection(state, onEvent)
                 }
 
-                SiteTabs.SKILLS_AND_PROJECTS -> {
-                    SkillsAndProjectsSection(state, onEvent)
+                SiteTabs.SKILLS_AND_TECHNOLOGIES -> {
+                    SkillsAndTechnologiesSection(state, onEvent)
+                }
+
+                SiteTabs.PROJECTS -> {
+                    ProjectsSection(state, onEvent)
                 }
             }
         }
     }
 }
 
+@Composable
+fun ProjectsSection(
+    state: SiteState,
+    onEvent: (SiteEvent) -> Unit = {},
+) {
+    Row(modifier = Modifier.fillMaxSize().background(CurrentColors.background)) {
+        Column(
+            modifier = Modifier.weight(1f).fillMaxHeight(),
+            horizontalAlignment = Alignment.CenterHorizontally,
+            verticalArrangement = Arrangement.Center
+        ) {
+            WordGrid(
+                modifier = Modifier.fillMaxWidth().background(CurrentColors.surface, shape = RoundedCornerShape(24.dp)),
+                state = state,
+                onClick = { onEvent(SiteEvent.OnProjectClicked(it)) },
+                wordList = projectList.map { it.title }
+            )
+        }
+        /*
+            Clicked Word will then show content here pertaining to it.
+         */
+        Column(
+            modifier = Modifier.padding(vertical = 48.dp, horizontal = 24.dp).weight(1f).fillMaxHeight()
+                .background(shape = RoundedCornerShape(48.dp), color = CurrentColors.error),
+            horizontalAlignment = Alignment.CenterHorizontally,
+            verticalArrangement = Arrangement.Center
+        ) {
+
+        }
+    }
+}
 
 @Composable
 fun AboutSection(
@@ -144,7 +178,7 @@ fun AboutSection(
 }
 
 @Composable
-fun SkillsAndProjectsSection(
+fun SkillsAndTechnologiesSection(
     state: SiteState,
     onEvent: (SiteEvent) -> Unit = {},
 ) {
@@ -154,17 +188,18 @@ fun SkillsAndProjectsSection(
             horizontalAlignment = Alignment.CenterHorizontally,
             verticalArrangement = Arrangement.Center
         ) {
-            Text(
-                text = "Skills and Technologies",
-                style = CurrentTypography.h1,
-                color = if (state.isDarkTheme) Color.White else Color.Black,
-                modifier = Modifier.padding(bottom = 32.dp),
-                textAlign = TextAlign.Center
+            WordGrid(
+                modifier = Modifier.fillMaxWidth().background(CurrentColors.surface, shape = RoundedCornerShape(24.dp)),
+                state = state,
+                onClick = { onEvent(SiteEvent.OnSkillClicked(it)) },
             )
-            WordGrid(modifier = Modifier.fillMaxWidth().background(CurrentColors.surface, shape = RoundedCornerShape(24.dp)),state, onEvent)
         }
+        /*
+            Clicked Word will then show content here pertaining to it.
+         */
         Column(
-            modifier = Modifier.padding(vertical = 48.dp, horizontal = 24.dp,).weight(1f).fillMaxHeight().background(shape = RoundedCornerShape(48.dp), color = CurrentColors.error),
+            modifier = Modifier.padding(vertical = 48.dp, horizontal = 24.dp).weight(1f).fillMaxHeight()
+                .background(shape = RoundedCornerShape(48.dp), color = CurrentColors.error),
             horizontalAlignment = Alignment.CenterHorizontally,
             verticalArrangement = Arrangement.Center
         ) {
@@ -173,27 +208,25 @@ fun SkillsAndProjectsSection(
     }
 }
 
+
 @Composable
 fun WordGrid(
     modifier: Modifier = Modifier,
+    wordList: List<String> = WORD_LIST,
     state: SiteState,
-    onEvent: (SiteEvent) -> Unit = {},
+    onClick: (String) -> Unit = {},
 ) {
     val cornerOptions = listOf(8.dp, 16.dp, 24.dp, 32.dp)
-    val colors = if (state.isDarkTheme) {
-        DarkPastelColors
-    } else {
-        LightPastelColors
-    }
+    val colors = CurrentColors.listColors
 
     LazyVerticalGrid(
         columns = GridCells.Adaptive(minSize = 240.dp),
-        contentPadding = PaddingValues(24.dp),
-        verticalArrangement = Arrangement.spacedBy(24.dp),
-        horizontalArrangement = Arrangement.spacedBy(24.dp),
+        contentPadding = PaddingValues(18.dp),
+        verticalArrangement = Arrangement.spacedBy(18.dp),
+        horizontalArrangement = Arrangement.spacedBy(18.dp),
         modifier = modifier
     ) {
-        items(WORD_LIST) { word ->
+        items(wordList) { word ->
             val backgroundColor = remember(state.isDarkTheme) {
                 colors.random()
             }
@@ -201,6 +234,7 @@ fun WordGrid(
 
             Box(
                 modifier = Modifier
+                    .clickable { onClick(word) }
                     .clip(RoundedCornerShape(cornerRadius))
                     .background(backgroundColor)
                     .padding(16.dp),

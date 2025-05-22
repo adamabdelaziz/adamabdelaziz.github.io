@@ -77,6 +77,15 @@ val DeepElectricBlue = Color(0xFF006B8F)
 val DeepHotPink = Color(0xFFB03060)
 val DeepOrange = Color(0xFF8B4000)
 val DeepYellow = Color(0xFFA99D00)
+val SoftPink = Color(0xFFFFB3BA)
+val MintGreen = Color(0xFFB5EAD7)
+val PastelCream = Color(0xFFFFF1E6)
+val MutedLavender = Color(0xFFBAA6D1)
+val MauveShadow = Color(0xFF2E2C38)
+val MutedTeal = Color(0xFF80CBC4)
+val LemonFrost = Color(0xFFFFFDE7)
+val SoftSurface = Color(0xFFFFF4E6)
+val FireRed = Color(0xFFFF6347)
 
 val LightPastelColors = listOf(
     PastelPeach,

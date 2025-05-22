@@ -5,7 +5,7 @@ import androidx.compose.runtime.CompositionLocalProvider
 
 @Composable
 fun AppTheme(
-    colors: AppColors = DarkWinterColors,
+    colors: AppColors = DarkPopAppColors,
     shapes: AppShapes = AppShapes(),
     typography: AppTypography = AppTypography(),
     content: @Composable () -> Unit
