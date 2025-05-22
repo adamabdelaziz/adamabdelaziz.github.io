@@ -15,6 +15,7 @@ kotlin {
         compilerOptions {
             freeCompilerArgs.add("-Xwasm-attach-js-exception")
         }
+
         outputModuleName = "composeApp"
         browser {
             val rootDirPath = project.rootDir.path
@@ -42,11 +43,11 @@ kotlin {
             implementation(compose.material)
             implementation(compose.ui)
             implementation(compose.components.resources)
-            //implementation(compose.components.uiToolingPreview)
-            //implementation(libs.androidx.lifecycle.viewmodel)
-            ///implementation(libs.androidx.lifecycle.runtime.compose)
+            implementation(compose.components.uiToolingPreview)
+            implementation(libs.androidx.lifecycle.viewmodel)
+            implementation(libs.androidx.lifecycle.runtime.compose)
 
-           // implementation(libs.coil.compose)
+            implementation(libs.coil.compose)
 
             implementation(libs.composeIcons.simpleIcons)
             implementation(libs.composeIcons.feather)

@@ -48,6 +48,9 @@ import compose.icons.feathericons.Paperclip
 import compose.icons.feathericons.Sun
 import org.adam.resume.website.GITHUB_URL
 import org.adam.resume.website.LINKEDIN_URL
+import org.adam.resume.website.SiteEvent
+import org.adam.resume.website.SiteState
+import org.adam.resume.website.SiteTabs
 import org.adam.resume.website.openEmail
 import org.adam.resume.website.openPdf
 import org.adam.resume.website.openUrl
@@ -123,6 +126,44 @@ fun HeaderIconExtended(
                     modifier = Modifier.padding(start = 24.dp),
                     color = tint,
                     style = CurrentTypography.h3,
+                )
+            }
+        }
+    }
+}
+
+@Composable
+fun HeaderRowNew(
+    modifier: Modifier = Modifier,
+    state: SiteState,
+    onEvent: (SiteEvent) -> Unit = {},
+) {
+    Row(
+        modifier = modifier,
+        verticalAlignment = Alignment.CenterVertically
+    ) {
+        Box(modifier = Modifier.weight(1f)) {
+            ThemeSwitch(
+                modifier = Modifier.background(CurrentColors.background),
+                isDarkTheme = state.isDarkTheme,
+                onToggleTheme = { onEvent(SiteEvent.OnToggleThemeClicked) }
+            )
+        }
+
+        Row(
+            modifier = Modifier.weight(2f),
+            horizontalArrangement = Arrangement.Start,
+            verticalAlignment = Alignment.CenterVertically
+        ) {
+            for (tab in SiteTabs.entries) {
+                Text(
+                    text = tab.title,
+                    modifier = Modifier
+                        .padding(horizontal = 8.dp)
+                        .clickable { onEvent(SiteEvent.OnTabSelected(tab)) },
+                    color = CurrentColors.onBackground,
+                    style = CurrentTypography.h3,
+                    textAlign = TextAlign.Start
                 )
             }
         }
