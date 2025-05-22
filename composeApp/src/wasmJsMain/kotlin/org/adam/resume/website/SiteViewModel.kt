@@ -7,6 +7,8 @@ import androidx.lifecycle.viewModelScope
 import kotlinx.coroutines.isActive
 import kotlinx.coroutines.launch
 import org.adam.resume.website.ui.ViewportSize
+import org.adam.resume.website.ui.components.Project
+import org.adam.resume.website.ui.components.projectList
 
 data class SiteState(
     val selectedTab: SiteTabs = SiteTabs.ABOUT,
@@ -14,7 +16,7 @@ data class SiteState(
     val outlinedText: String = "Software Engineer",
     val viewportSize: ViewportSize = ViewportSize(0, 0),
     val clickedSkill: String? = null,
-    val clickedProject: String? = null,
+    val clickedProject: Project? = null,
 )
 
 sealed class SiteEvent {
@@ -24,7 +26,6 @@ sealed class SiteEvent {
     data class OnSkillClicked(val skill: String) : SiteEvent()
     data class OnProjectClicked(val project: String) : SiteEvent()
 }
-
 
 enum class SiteTabs(val title: String) {
     ABOUT("About"),
@@ -70,7 +71,8 @@ class SiteViewModel : ViewModel() {
             }
 
             is SiteEvent.OnProjectClicked -> {
-                _state.value = _state.value.copy(clickedProject = event.project)
+                val project = projectList.firstOrNull { it.title == event.project }
+                _state.value = _state.value.copy(clickedProject = project)
             }
         }
     }

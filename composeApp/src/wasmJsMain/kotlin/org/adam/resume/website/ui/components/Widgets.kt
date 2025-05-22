@@ -96,7 +96,7 @@ fun HeaderIconExtended(
     Box(
         modifier = modifier
             .clip(CurrentShapes.pill)
-            .background(if (isHovered) CurrentColors.background else Color.Transparent)
+            .background(if (isHovered) CurrentColors.surface else Color.Transparent)
             .animateContentSize()
             .pointerHoverIcon(PointerIcon.Hand)
             .clickable { onClick() }
@@ -156,12 +156,13 @@ fun HeaderRowNew(
             verticalAlignment = Alignment.CenterVertically
         ) {
             for (tab in SiteTabs.entries) {
+                val selected = state.selectedTab == tab
                 Text(
                     text = tab.title,
                     modifier = Modifier
                         .padding(end = 48.dp)
                         .clickable { onEvent(SiteEvent.OnTabSelected(tab)) },
-                    color = CurrentColors.onBackground,
+                    color = if (selected) CurrentColors.primary else CurrentColors.onBackground,
                     style = CurrentTypography.h3,
                     textAlign = TextAlign.Start
                 )
@@ -242,13 +243,13 @@ fun IconColumn(modifier: Modifier = Modifier) {
             label = "My Resume"
         )
 
-        Text("Site made with Compose for Web", fontSize = 24.sp, color = CurrentColors.onBackground, modifier = Modifier.padding(bottom = 16.dp))
-        Text(
-            "All photographs used were taken by me",
-            fontSize = 16.sp,
-            color = CurrentColors.onBackground,
-            modifier = Modifier.padding(bottom = 4.dp)
-        )
+//        Text("Site made with Compose for Web", fontSize = 24.sp, color = CurrentColors.onBackground, modifier = Modifier.padding(bottom = 16.dp))
+//        Text(
+//            "All photographs used were taken by me",
+//            fontSize = 16.sp,
+//            color = CurrentColors.onBackground,
+//            modifier = Modifier.padding(bottom = 4.dp)
+//        )
     }
 }
 

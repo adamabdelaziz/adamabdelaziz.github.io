@@ -16,9 +16,11 @@ import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.PaddingValues
 import androidx.compose.foundation.layout.Row
+import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxHeight
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
+import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.lazy.grid.GridCells
 import androidx.compose.foundation.lazy.grid.LazyVerticalGrid
@@ -39,8 +41,11 @@ import org.adam.resume.website.SiteState
 import org.adam.resume.website.SiteTabs
 import org.adam.resume.website.WORD_LIST
 import org.adam.resume.website.thenIf
+import org.adam.resume.website.ui.components.BouncyAnimatedSurfaceContent
 import org.adam.resume.website.ui.components.HeaderRowNew
+import org.adam.resume.website.ui.components.IconColumn
 import org.adam.resume.website.ui.components.OutlinedText
+import org.adam.resume.website.ui.components.ProjectView
 import org.adam.resume.website.ui.components.projectList
 import org.adam.resume.website.ui.theme.AppTheme
 import org.adam.resume.website.ui.theme.CurrentColors
@@ -79,12 +84,17 @@ fun ContactSection(
     Column(
         modifier = Modifier
             .fillMaxSize()
-            .background(CurrentColors.background),
+            .background(color = CurrentColors.background, shape = RoundedCornerShape(24.dp)),
         horizontalAlignment = Alignment.CenterHorizontally,
         verticalArrangement = Arrangement.Center
     ) {
-        OutlinedText(text = "Adam Abdelaziz", modifier = Modifier.padding(bottom = 64.dp))
+        Spacer(Modifier.height(64.dp))
+        OutlinedText(
+            text = "Adam Abdelaziz",
+            modifier = Modifier.padding(bottom = 64.dp),
+        )
         AnimatedContent(
+            modifier = Modifier.padding(bottom = 64.dp),
             targetState = state.outlinedText,
             transitionSpec = {
                 (scaleIn(
@@ -99,6 +109,7 @@ fun ContactSection(
         ) {
             OutlinedText(text = it, fontSize = 48.sp)
         }
+        IconColumn()
     }
 }
 
@@ -144,28 +155,27 @@ fun ProjectsSection(
 ) {
     Row(modifier = Modifier.fillMaxSize().background(CurrentColors.background)) {
         Column(
-            modifier = Modifier.weight(1f).fillMaxHeight(),
+            modifier = Modifier.weight(1f).fillMaxHeight().padding(end = 48.dp),
             horizontalAlignment = Alignment.CenterHorizontally,
             verticalArrangement = Arrangement.Center
         ) {
             WordGrid(
-                modifier = Modifier.fillMaxWidth().background(CurrentColors.surface, shape = RoundedCornerShape(24.dp)),
+                modifier = Modifier.fillMaxWidth(0.75f).background(CurrentColors.surface, shape = RoundedCornerShape(24.dp)),
                 state = state,
                 onClick = { onEvent(SiteEvent.OnProjectClicked(it)) },
                 wordList = projectList.map { it.title },
-                clickedWord = state.clickedProject
+                clickedWord = state.clickedProject?.title,
+                columns = GridCells.Fixed(1)
             )
         }
-        /*
-            Clicked Word will then show content here pertaining to it.
-         */
-        Column(
-            modifier = Modifier.padding(vertical = 48.dp, horizontal = 24.dp).weight(1f).fillMaxHeight()
-                .background(shape = RoundedCornerShape(48.dp), color = CurrentColors.error),
-            horizontalAlignment = Alignment.CenterHorizontally,
-            verticalArrangement = Arrangement.Center
-        ) {
 
+        BouncyAnimatedSurfaceContent(
+            modifier = Modifier.padding(vertical = 48.dp, horizontal = 24.dp).weight(1f).fillMaxHeight(),
+            targetState = state.clickedProject,
+        ) {
+            it?.let {
+                ProjectView(modifier = Modifier.fillMaxWidth(), project = it)
+            }
         }
     }
 }
@@ -198,17 +208,15 @@ fun SkillsAndTechnologiesSection(
                 clickedWord = state.clickedSkill
             )
         }
-        /*
-            Clicked Word will then show content here pertaining to it.
-         */
-        Column(
-            modifier = Modifier.padding(vertical = 48.dp, horizontal = 24.dp).weight(1f).fillMaxHeight()
-                .background(shape = RoundedCornerShape(48.dp), color = CurrentColors.error),
-            horizontalAlignment = Alignment.CenterHorizontally,
-            verticalArrangement = Arrangement.Center
+
+        BouncyAnimatedSurfaceContent(
+            modifier = Modifier.padding(vertical = 48.dp, horizontal = 24.dp).weight(1f).fillMaxHeight(),
+            targetState = state.clickedSkill,
         ) {
 
         }
+
+
     }
 }
 
@@ -220,12 +228,13 @@ fun WordGrid(
     state: SiteState,
     onClick: (String) -> Unit = {},
     clickedWord: String? = null,
+    columns: GridCells = GridCells.Adaptive(minSize = 240.dp)
 ) {
     val cornerOptions = listOf(8.dp, 16.dp, 24.dp, 32.dp)
     val colors = CurrentColors.listColors
 
     LazyVerticalGrid(
-        columns = GridCells.Adaptive(minSize = 240.dp),
+        columns = columns,
         contentPadding = PaddingValues(18.dp),
         verticalArrangement = Arrangement.spacedBy(18.dp),
         horizontalArrangement = Arrangement.spacedBy(18.dp),
@@ -240,7 +249,7 @@ fun WordGrid(
             Box(
                 modifier = Modifier
                     .clickable { onClick(word) }
-                    .thenIf(clicked, Modifier.border(2.dp, CurrentColors.onSecondary, RoundedCornerShape(24.dp)))
+                    .thenIf(clicked, Modifier.border(2.dp, CurrentColors.secondary, RoundedCornerShape(24.dp)))
                     .clip(RoundedCornerShape(if (clicked) 24.dp else 16.dp))
                     .background(backgroundColor)
                     .padding(16.dp),

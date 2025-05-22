@@ -53,7 +53,7 @@ fun openEmail(to: String = "adam.a.abdelaziz@gmail.com", subject: String = "From
 external fun encodeURIComponent(str: String): String
 
 const val GITHUB_URL = "https://github.com/adamabdelaziz"
-const val LINKEDIN_URL = "https://www.linkedin.com/in/adam-abdelaziz/"
+const val LINKEDIN_URL = "https://www.linkedin.com/in/adamabdelaziz"
 const val RESUME_URL = "https://adamabdelaziz.github.io/ResumeWebsite/static/AdamAbdelazizResume.pdf" //TODO: Change when replacing old website
 
 val WORD_LIST = listOf(

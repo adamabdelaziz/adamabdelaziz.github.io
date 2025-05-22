@@ -171,11 +171,12 @@ fun ProjectView(
         verticalArrangement = Arrangement.Top,
         horizontalAlignment = Alignment.CenterHorizontally,
     ) {
+
         Text(
             text = project.title,
             color = CurrentColors.onSecondary,
             style = CurrentTypography.h1,
-            modifier = Modifier.fillMaxWidth().padding(vertical = 32.dp),
+            modifier = Modifier.fillMaxWidth().padding(horizontal = 32.dp, vertical = 64.dp),
             textAlign = TextAlign.Center
         )
 
@@ -184,19 +185,21 @@ fun ProjectView(
             color = CurrentColors.onSecondary,
             style = CurrentTypography.h2,
             textAlign = TextAlign.Center,
-            modifier = Modifier.fillMaxWidth().padding(horizontal = 32.dp, vertical = 20.dp)
+            modifier = Modifier.fillMaxWidth().padding(horizontal = 32.dp,)
         )
+
+        Spacer(Modifier.height(64.dp))
 
         project.points.forEach { point ->
             Text(
                 text = "• $point",
                 color = CurrentColors.onSecondary,
                 style = CurrentTypography.h2,
-                modifier = Modifier.fillMaxWidth().padding(horizontal = 16.dp, vertical = 12.dp)
+                modifier = Modifier.fillMaxWidth().padding(horizontal = 32.dp, vertical = 24.dp)
             )
         }
 
-        Spacer(Modifier.weight(1f))
+        Spacer(Modifier.height(64.dp))
 
         if (project.githubUrl != null) {
             HeaderIcon(
