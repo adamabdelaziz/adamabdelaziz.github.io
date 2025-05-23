@@ -26,6 +26,7 @@ import androidx.compose.ui.unit.IntSize
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import kotlinx.coroutines.delay
+import org.adam.resume.website.ui.theme.CurrentColors
 import kotlin.random.Random
 
 @Composable
@@ -46,7 +47,7 @@ fun RainingWord(word: String, containerSize: IntSize) {
     val textSizePx = with(density) { textSize.toPx() }
     val padding = 16.dp
     val paddingPx = with(density) { padding.toPx() }
-
+    val colors = CurrentColors
     val initialX = remember {
         Random.nextFloat() * (containerSize.width - textSizePx - paddingPx * 2) + paddingPx
     }
@@ -54,7 +55,7 @@ fun RainingWord(word: String, containerSize: IntSize) {
     val positionX = remember { Animatable(initialX) }
     val positionY = remember { Animatable(0f) }
 
-    var color by remember { mutableStateOf(randomColor()) }
+    var color by remember { mutableStateOf(colors.listColors.random()) }
     var velocity by remember { mutableStateOf(randomVelocity()) }
 
     LaunchedEffect(Unit) {

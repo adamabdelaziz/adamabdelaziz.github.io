@@ -185,7 +185,7 @@ fun ProjectView(
             color = CurrentColors.onSecondary,
             style = CurrentTypography.h2,
             textAlign = TextAlign.Center,
-            modifier = Modifier.fillMaxWidth().padding(horizontal = 32.dp,)
+            modifier = Modifier.fillMaxWidth().padding(horizontal = 32.dp)
         )
 
         Spacer(Modifier.height(64.dp))
@@ -264,4 +264,15 @@ val composeWeather = Project(
     githubUrl = "https://github.com/adamabdelaziz/ComposeWeather/tree/main"
 )
 
-val projectList = listOf(kryptoProject, composeWeather, kovidProject)
+val kinetic = Project(
+    title = "Kinetic",
+    blurb = "Kotlin Multiplatform (Android & iOS) app to track workouts and monitor exercise progress.",
+    points = listOf(
+        "Shared UI and business logic across Android and iOS using Kotlin Multiplatform and Compose Multiplatform",
+        "Built with a unidirectional MVI architecture, leveraging Kotlin Flow for reactive state management",
+        "Backend powered by Ktor and GraphQL, enabling flexible and typed data access",
+        "Koin used for dependency injection across shared and platform-specific modules",
+    ),
+)
+
+val projectList = listOf(kinetic, kryptoProject, composeWeather, kovidProject, )

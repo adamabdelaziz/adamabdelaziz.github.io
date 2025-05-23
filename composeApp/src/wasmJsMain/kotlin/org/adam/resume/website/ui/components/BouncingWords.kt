@@ -25,15 +25,16 @@ import androidx.compose.ui.text.TextStyle
 import androidx.compose.ui.unit.IntSize
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import org.adam.resume.website.ui.theme.CurrentColors
 import kotlin.random.Random
 
 @Composable
 fun BouncingWordsAnimation(modifier: Modifier = Modifier, words: List<String>) {
     BoxWithConstraints(modifier = modifier) {
         val containerSize = IntSize(constraints.maxWidth, constraints.maxHeight)
-
+        val colors = CurrentColors
         words.forEach { word ->
-            val color = remember { randomColor() }
+            val color = remember { colors.listColors.random() }
             val velocity = remember { randomVelocity() }
             BouncingWord(word, containerSize, color, velocity)
         }
@@ -41,7 +42,7 @@ fun BouncingWordsAnimation(modifier: Modifier = Modifier, words: List<String>) {
 }
 
 @Composable
-fun BouncingWord(word: String, containerSize: IntSize, color: Color, initialVelocity: Offset) {
+private fun BouncingWord(word: String, containerSize: IntSize, color: Color, initialVelocity: Offset) {
     val positionX = remember { Animatable(Random.nextFloat() * containerSize.width) }
     val positionY = remember { Animatable(Random.nextFloat() * containerSize.height) }
     var velocity by remember { mutableStateOf(initialVelocity) }
@@ -83,14 +84,6 @@ fun BouncingWord(word: String, containerSize: IntSize, color: Color, initialVelo
     }
 }
 
-private fun randomColor(): Color {
-    return Color(
-        red = Random.nextFloat(),
-        green = Random.nextFloat(),
-        blue = Random.nextFloat(),
-        alpha = 1f
-    )
-}
 
 private fun randomPosition(containerSize: IntSize) = Offset(
     Random.nextFloat() * containerSize.width,

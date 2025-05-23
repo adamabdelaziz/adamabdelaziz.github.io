@@ -44,6 +44,7 @@ import org.adam.resume.website.thenIf
 import org.adam.resume.website.ui.components.BouncyAnimatedSurfaceContent
 import org.adam.resume.website.ui.components.HeaderRowNew
 import org.adam.resume.website.ui.components.IconColumn
+import org.adam.resume.website.ui.components.OrbitingWords
 import org.adam.resume.website.ui.components.OutlinedText
 import org.adam.resume.website.ui.components.ProjectView
 import org.adam.resume.website.ui.components.projectList
@@ -137,7 +138,7 @@ fun ContentSection(
                 }
 
                 SiteTabs.SKILLS_AND_TECHNOLOGIES -> {
-                    SkillsAndTechnologiesSection(state, onEvent)
+                    OrbitingWords(modifier = Modifier.fillMaxSize(), words = WORD_LIST, colors = CurrentColors.listColors)
                 }
 
                 SiteTabs.PROJECTS -> {
@@ -189,37 +190,6 @@ fun AboutSection(
 
     }
 }
-
-@Composable
-fun SkillsAndTechnologiesSection(
-    state: SiteState,
-    onEvent: (SiteEvent) -> Unit = {},
-) {
-    Row(modifier = Modifier.fillMaxSize().background(CurrentColors.background)) {
-        Column(
-            modifier = Modifier.weight(1f).fillMaxHeight(),
-            horizontalAlignment = Alignment.CenterHorizontally,
-            verticalArrangement = Arrangement.Center
-        ) {
-            WordGrid(
-                modifier = Modifier.fillMaxWidth().background(CurrentColors.surface, shape = RoundedCornerShape(24.dp)),
-                state = state,
-                onClick = { onEvent(SiteEvent.OnSkillClicked(it)) },
-                clickedWord = state.clickedSkill
-            )
-        }
-
-        BouncyAnimatedSurfaceContent(
-            modifier = Modifier.padding(vertical = 48.dp, horizontal = 24.dp).weight(1f).fillMaxHeight(),
-            targetState = state.clickedSkill,
-        ) {
-
-        }
-
-
-    }
-}
-
 
 @Composable
 fun WordGrid(
