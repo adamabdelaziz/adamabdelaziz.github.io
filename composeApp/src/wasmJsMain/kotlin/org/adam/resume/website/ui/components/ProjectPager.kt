@@ -14,7 +14,9 @@ import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.pager.HorizontalPager
 import androidx.compose.foundation.pager.rememberPagerState
+import androidx.compose.foundation.rememberScrollState
 import androidx.compose.foundation.shape.RoundedCornerShape
+import androidx.compose.foundation.verticalScroll
 import androidx.compose.material.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.rememberCoroutineScope
@@ -166,8 +168,10 @@ fun ProjectView(
     modifier: Modifier = Modifier,
     project: Project,
 ) {
+    val scrollState = rememberScrollState()
+
     Column(
-        modifier = modifier,
+        modifier = modifier.verticalScroll(scrollState),
         verticalArrangement = Arrangement.Top,
         horizontalAlignment = Alignment.CenterHorizontally,
     ) {
@@ -176,7 +180,7 @@ fun ProjectView(
             text = project.title,
             color = CurrentColors.onSecondary,
             style = CurrentTypography.h1,
-            modifier = Modifier.fillMaxWidth().padding(horizontal = 32.dp, vertical = 64.dp),
+            modifier = Modifier.fillMaxWidth().padding(horizontal = 32.dp, vertical = 32.dp),
             textAlign = TextAlign.Center
         )
 
@@ -185,21 +189,21 @@ fun ProjectView(
             color = CurrentColors.onSecondary,
             style = CurrentTypography.h2,
             textAlign = TextAlign.Center,
-            modifier = Modifier.fillMaxWidth().padding(horizontal = 32.dp)
+            modifier = Modifier.fillMaxWidth().padding(horizontal = 16.dp)
         )
 
-        Spacer(Modifier.height(64.dp))
+        Spacer(Modifier.height(32.dp))
 
         project.points.forEach { point ->
             Text(
                 text = "• $point",
                 color = CurrentColors.onSecondary,
                 style = CurrentTypography.h2,
-                modifier = Modifier.fillMaxWidth().padding(horizontal = 32.dp, vertical = 24.dp)
+                modifier = Modifier.fillMaxWidth().padding(horizontal = 32.dp, vertical = 16.dp)
             )
         }
 
-        Spacer(Modifier.height(64.dp))
+        Spacer(Modifier.height(32.dp))
 
         if (project.githubUrl != null) {
             HeaderIcon(

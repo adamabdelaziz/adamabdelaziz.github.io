@@ -175,7 +175,7 @@ fun ProjectsSection(
             targetState = state.clickedProject,
         ) {
             it?.let {
-                ProjectView(modifier = Modifier.fillMaxWidth(), project = it)
+                ProjectView(modifier = Modifier.fillMaxSize(), project = it)
             }
         }
     }
