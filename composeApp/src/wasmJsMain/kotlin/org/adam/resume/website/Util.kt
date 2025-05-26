@@ -66,9 +66,13 @@ val WORD_LIST = listOf(
     "Flows",
     "LiveData",
     "Coroutines",
+    "Datastore",
+    "Leak Canary",
     "Dagger Hilt",
     "Ktor",
     "Room",
+    "Exposed",
+    "PostgreSQL",
     "SQL",
     "Firebase",
     "Jetpack Compose",
@@ -78,7 +82,17 @@ val WORD_LIST = listOf(
     "TDD",
     "Espresso",
     "Use Cases",
-)
+).shuffled()
+
+val ABOUT_ME =
+    "I'm Adam, a software engineer based in New York City focused on Android development with Kotlin and Jetpack Compose." +
+            " I've worked on large-scale production apps, handling everything from bug fixes to major feature development and codebase modernization." +
+            " Over time, I’ve developed an interest in backend development and started building full-stack projects on my own to better understand how everything fits together." +
+            " I'm always looking to sharpen my skills and build things that are easy to maintain and use."
+
+val ABOUT_ME_LIST = ABOUT_ME.split("(?<=\\.)".toRegex())
+    .filter { it.isNotBlank() }
+    .map { it.trim() }
 
 val GOOD_IMAGE_LIST = listOf(
     Res.drawable.backgroundImage3,

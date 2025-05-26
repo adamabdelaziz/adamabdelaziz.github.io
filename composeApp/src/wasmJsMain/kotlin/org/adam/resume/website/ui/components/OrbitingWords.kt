@@ -11,7 +11,6 @@ import androidx.compose.material.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.getValue
-import androidx.compose.runtime.key
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
 import androidx.compose.runtime.setValue
@@ -25,6 +24,7 @@ import androidx.compose.ui.unit.IntSize
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import kotlinx.coroutines.delay
+import kotlinx.coroutines.isActive
 import kotlin.math.PI
 import kotlin.math.cos
 import kotlin.math.min
@@ -32,7 +32,7 @@ import kotlin.math.sin
 import kotlin.random.Random
 
 @Composable
-fun OrbitingWords(modifier: Modifier = Modifier, words: List<String>, colors: List<Color>) {
+fun OrbitingWords(modifier: Modifier = Modifier, words: List<String>, colors: List<Color>, textColor: Color) {
     BoxWithConstraints(modifier = modifier.fillMaxSize()) {
         val containerSize = IntSize(constraints.maxWidth, constraints.maxHeight)
         val center = Offset(containerSize.width / 2f, containerSize.height / 2f)
@@ -56,24 +56,22 @@ fun OrbitingWords(modifier: Modifier = Modifier, words: List<String>, colors: Li
             }
         }
 
-        key(items) {
-            LaunchedEffect(Unit) {
-                while (true) {
-                    items.forEach { item ->
-                        item.angle = if (item.clockwise) {
-                            (item.angle + item.speed) % 360f
-                        } else {
-                            (item.angle - item.speed + 360f) % 360f
-                        }
+        LaunchedEffect(items) {
+            while (isActive) {
+                items.forEach { item ->
+                    item.angle = if (item.clockwise) {
+                        (item.angle + item.speed) % 360f
+                    } else {
+                        (item.angle - item.speed + 360f) % 360f
                     }
-                    delay(8)
                 }
+                delay(12)
             }
         }
 
         Box(modifier = Modifier.fillMaxSize()) {
             items.forEach { item ->
-                OrbitingWord(center = center, item = item)
+                OrbitingWord(center = center, item = item, textColor = textColor)
             }
         }
     }
@@ -91,7 +89,7 @@ private class OrbitingItemState(
 }
 
 @Composable
-private fun OrbitingWord(center: Offset, item: OrbitingItemState) {
+private fun OrbitingWord(center: Offset, item: OrbitingItemState, textColor: Color) {
     val radians = (item.angle * PI / 180).toFloat()
     val x = center.x + item.radius * cos(radians)
     val y = center.y + item.radius * sin(radians)
@@ -105,7 +103,7 @@ private fun OrbitingWord(center: Offset, item: OrbitingItemState) {
     ) {
         Text(
             text = item.word,
-            style = TextStyle(color = Color.White, fontSize = 20.sp),
+            style = TextStyle(color = textColor, fontSize = 20.sp),
             modifier = Modifier.padding(24.dp)
         )
     }

@@ -64,3 +64,7 @@ tasks.register<Copy>("copyResources") {
 tasks.named("wasmJsBrowserDevelopmentRun") {
     dependsOn("copyResources")
 }
+
+tasks.named("wasmJsBrowserProductionRun") {
+    dependsOn("copyResources")
+}

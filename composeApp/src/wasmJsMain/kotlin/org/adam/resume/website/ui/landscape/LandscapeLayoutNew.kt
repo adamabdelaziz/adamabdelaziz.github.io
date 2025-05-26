@@ -1,12 +1,14 @@
 package org.adam.resume.website.ui.landscape
 
 import androidx.compose.animation.AnimatedContent
+import androidx.compose.animation.AnimatedVisibility
 import androidx.compose.animation.SizeTransform
 import androidx.compose.animation.core.Spring
 import androidx.compose.animation.core.spring
 import androidx.compose.animation.fadeIn
 import androidx.compose.animation.fadeOut
 import androidx.compose.animation.scaleIn
+import androidx.compose.animation.slideInVertically
 import androidx.compose.animation.togetherWith
 import androidx.compose.foundation.background
 import androidx.compose.foundation.border
@@ -26,8 +28,12 @@ import androidx.compose.foundation.lazy.grid.GridCells
 import androidx.compose.foundation.lazy.grid.LazyVerticalGrid
 import androidx.compose.foundation.lazy.grid.items
 import androidx.compose.foundation.shape.RoundedCornerShape
+import androidx.compose.material.Surface
 import androidx.compose.material.Text
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.LaunchedEffect
+import androidx.compose.runtime.key
+import androidx.compose.runtime.mutableStateListOf
 import androidx.compose.runtime.remember
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
@@ -36,6 +42,8 @@ import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import kotlinx.coroutines.delay
+import org.adam.resume.website.ABOUT_ME_LIST
 import org.adam.resume.website.SiteEvent
 import org.adam.resume.website.SiteState
 import org.adam.resume.website.SiteTabs
@@ -50,6 +58,7 @@ import org.adam.resume.website.ui.components.ProjectView
 import org.adam.resume.website.ui.components.projectList
 import org.adam.resume.website.ui.theme.AppTheme
 import org.adam.resume.website.ui.theme.CurrentColors
+import org.adam.resume.website.ui.theme.CurrentTypography
 import org.adam.resume.website.ui.theme.DarkPastelAppColors
 import org.adam.resume.website.ui.theme.LightPastelAppColors
 
@@ -132,19 +141,27 @@ fun ContentSection(
             },
             label = "FadeScreenTransition"
         ) { tab ->
-            when (tab) {
-                SiteTabs.ABOUT -> {
-                    AboutSection(state, onEvent)
-                }
+            key(tab) {
+                when (tab) {
+                    SiteTabs.ABOUT -> {
+                       AboutSection(modifier = Modifier.fillMaxSize(), state = state, onEvent = onEvent)
+                    }
 
-                SiteTabs.SKILLS_AND_TECHNOLOGIES -> {
-                    OrbitingWords(modifier = Modifier.fillMaxSize(), words = WORD_LIST, colors = CurrentColors.listColors)
-                }
+                    SiteTabs.SKILLS_AND_TECHNOLOGIES -> {
+                        OrbitingWords(
+                            modifier = Modifier.fillMaxSize(),
+                            words = WORD_LIST,
+                            colors = CurrentColors.listColors,
+                            textColor = CurrentColors.onSurface,
+                        )
+                    }
 
-                SiteTabs.PROJECTS -> {
-                    ProjectsSection(state, onEvent)
+                    SiteTabs.PROJECTS -> {
+                        ProjectsSection(state, onEvent)
+                    }
                 }
             }
+
         }
     }
 }
@@ -183,13 +200,97 @@ fun ProjectsSection(
 
 @Composable
 fun AboutSection(
+    modifier: Modifier = Modifier,
     state: SiteState,
     onEvent: (SiteEvent) -> Unit = {},
 ) {
-    Row(modifier = Modifier.fillMaxSize().background(CurrentColors.background)) {
-
+    key(state.selectedTab) {
+        Box(modifier = modifier.padding(end = 64.dp)) {
+            AnimatedAboutMeParagraph(
+                modifier = Modifier
+                    .align(Alignment.Center)
+                    .fillMaxWidth()
+                    .padding(horizontal = 24.dp, vertical = 16.dp),
+                sentences = ABOUT_ME_LIST,
+            )
+        }
     }
 }
+
+@Composable
+fun AnimatedAboutMeParagraph(
+    modifier: Modifier = Modifier,
+    sentences: List<String>,
+    delayBetween: Long = 1000L,
+) {
+    val visibleStates = remember { mutableStateListOf<Boolean>() }
+    val themeColors = CurrentColors.listColors
+
+    LaunchedEffect(Unit) {
+        visibleStates.clear()
+        if (visibleStates.size < sentences.size) {
+            repeat(sentences.size) { visibleStates.add(false) }
+        }
+
+        sentences.indices.forEach { index ->
+            delay(delayBetween)
+            visibleStates[index] = true
+        }
+    }
+
+    Column(
+        modifier = modifier.fillMaxWidth(),
+        verticalArrangement = Arrangement.spacedBy(16.dp)
+    ) {
+        sentences.forEachIndexed { index, sentence ->
+            val alignment = if (index % 2 == 0) Alignment.CenterStart else Alignment.CenterEnd
+            val color = if (index % 2 == 0) CurrentColors.surface else CurrentColors.success
+
+            AnimatedVisibility(
+                visible = visibleStates.getOrNull(index) == true,
+                enter = slideInVertically(
+                    initialOffsetY = { it / 2 },
+                    animationSpec = spring(
+                        dampingRatio = Spring.DampingRatioMediumBouncy,
+                        stiffness = Spring.StiffnessLow
+                    )
+                ) + fadeIn(
+                    animationSpec = spring(
+                        dampingRatio = Spring.DampingRatioMediumBouncy,
+                        stiffness = Spring.StiffnessLow
+                    )
+                ) + scaleIn(
+                    initialScale = 0.8f,
+                    animationSpec = spring(
+                        dampingRatio = Spring.DampingRatioMediumBouncy,
+                        stiffness = Spring.StiffnessLow
+                    )
+                ),
+                exit = fadeOut(animationSpec = spring(stiffness = Spring.StiffnessMedium))
+            ) {
+                Box(
+                    modifier = Modifier.fillMaxWidth(),
+                    contentAlignment = alignment
+                ) {
+                    Surface(
+                        modifier = Modifier
+                            .padding(horizontal = 24.dp)
+                            .clip(RoundedCornerShape(24.dp)),
+                        color = color
+                    ) {
+                        Text(
+                            modifier = Modifier.padding(16.dp),
+                            text = sentence,
+                            style = CurrentTypography.h2,
+                            color = CurrentColors.onSurface,
+                        )
+                    }
+                }
+            }
+        }
+    }
+}
+
 
 @Composable
 fun WordGrid(
