@@ -265,14 +265,14 @@ fun ThemeSwitch(modifier: Modifier = Modifier, isDarkTheme: Boolean = true, onTo
         Icon(
             imageVector = FeatherIcons.Sun,
             contentDescription = null,
-            modifier = Modifier.size(64.dp).padding(top = 2.dp, bottom = 2.dp, end = 16.dp),
+            modifier = Modifier.size(64.dp).padding(top = 2.dp, bottom = 2.dp, end = 16.dp),    
             tint = CurrentColors.onBackground
         )
         Switch(
             modifier = Modifier.padding(top = 2.dp, bottom = 2.dp,end = 16.dp),
             checked = isDarkTheme,
             onCheckedChange = onToggleTheme,
-            colors = SwitchDefaults.colors()
+            colors = SwitchDefaults.colors(checkedThumbColor = CurrentColors.primary, checkedTrackColor = CurrentColors.primary)
         )
         Icon(
             imageVector = FeatherIcons.Moon,

@@ -51,7 +51,6 @@ fun PortraitLayoutNew(
                     title = {},
                     backgroundColor = CurrentColors.background,
                     contentColor = CurrentColors.primary,
-                    elevation = 4.dp,
                     actions = {
                         HeaderRowPortrait(
                             modifier = Modifier.fillMaxWidth().background(CurrentColors.background),
@@ -70,7 +69,6 @@ fun PortraitLayoutNew(
                 BottomAppBar(
                     backgroundColor = CurrentColors.background,
                     contentColor = CurrentColors.primary,
-                    elevation = 4.dp
                 ) {
                     Row(
                         modifier = Modifier.fillMaxWidth(),
@@ -124,13 +122,13 @@ private fun BottomBarIconButton(
                 modifier = Modifier.padding(bottom = 8.dp),
                 imageVector = icon,
                 contentDescription = label,
-                tint = if (state.selectedTab == targetTab) CurrentColors.secondary else CurrentColors.primary
+                tint = if (state.selectedTab == targetTab) CurrentColors.primary else CurrentColors.onBackground
             )
             Text(
                 textAlign = TextAlign.Center,
                 text = label,
-                style = CurrentTypography.body1,
-                color = if (state.selectedTab == targetTab) CurrentColors.secondary else CurrentColors.primary
+                style = CurrentTypography.h3,
+                color = if (state.selectedTab == targetTab) CurrentColors.primary else CurrentColors.onBackground
             )
         }
     }

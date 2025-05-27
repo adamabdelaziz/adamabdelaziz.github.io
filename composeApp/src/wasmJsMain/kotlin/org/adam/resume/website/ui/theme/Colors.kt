@@ -94,8 +94,8 @@ val DeepHotPink = Color(0xFFB03060) // Strong rich pink-red
 val LightPastelColors = listOf(
     PastelPeach,
     PastelMint,
-    PastelLavender,
     PastelRose,
+    PastelLavender,
     PastelSky,
     PastelLemon,
     PastelSeafoam,

@@ -54,10 +54,10 @@ val DarkColorsCute = AppColors(
 )
 
 val LightPastelAppColors = AppColors(
-    primary = SoftPink,
+    primary = MidnightBlue,
     secondary = MintGreen,
-    background = PastelRose,
-    surface = BlushRose,
+    background = IcicleGray,
+    surface = SoftWhite,
     error = Crimson,
     onPrimary = Color(0xFF333333),
     onSecondary = Color(0xFF333333),
@@ -65,7 +65,7 @@ val LightPastelAppColors = AppColors(
     onSurface = Color(0xFF333333),
     onError = SnowWhite,
     warning = BrightOrange,
-    success = ForestMist,
+    success = SkyMist,
     listColors = LightPastelColors
 )
 
@@ -81,7 +81,7 @@ val DarkPastelAppColors = AppColors(
     onSurface = SoftWhite,
     onError = SlateNight,
     warning = BrightOrange,
-    success = ForestGreen,
+    success = StormyBlue,
     listColors = DarkPastelColors
 )
 
