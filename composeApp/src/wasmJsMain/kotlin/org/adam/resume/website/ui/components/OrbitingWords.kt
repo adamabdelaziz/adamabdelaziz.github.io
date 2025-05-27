@@ -65,7 +65,7 @@ fun OrbitingWords(modifier: Modifier = Modifier, words: List<String>, colors: Li
                         (item.angle - item.speed + 360f) % 360f
                     }
                 }
-                delay(12)
+                delay(8)
             }
         }
 

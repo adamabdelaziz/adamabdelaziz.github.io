@@ -56,6 +56,7 @@ import org.adam.resume.website.ui.components.OrbitingWords
 import org.adam.resume.website.ui.components.OutlinedText
 import org.adam.resume.website.ui.components.ProjectView
 import org.adam.resume.website.ui.components.projectList
+import org.adam.resume.website.ui.portrait.AboutSectionPortrait
 import org.adam.resume.website.ui.theme.AppTheme
 import org.adam.resume.website.ui.theme.CurrentColors
 import org.adam.resume.website.ui.theme.CurrentTypography
@@ -76,7 +77,11 @@ fun LandscapeLayoutNew(
             )
             Row(modifier = Modifier.fillMaxSize().background(CurrentColors.background)) {
                 Column(modifier = Modifier.weight(1f).fillMaxHeight()) {
-                    ContactSection(state, onEvent)
+                    ContactSection(
+                        Modifier
+                            .fillMaxSize()
+                            .background(color = CurrentColors.background, shape = RoundedCornerShape(24.dp)), state, onEvent
+                    )
                 }
                 Column(modifier = Modifier.weight(2f).fillMaxHeight()) {
                     ContentSection(state, onEvent)
@@ -88,13 +93,12 @@ fun LandscapeLayoutNew(
 
 @Composable
 fun ContactSection(
+    modifier: Modifier = Modifier,
     state: SiteState,
     onEvent: (SiteEvent) -> Unit = {},
 ) {
     Column(
-        modifier = Modifier
-            .fillMaxSize()
-            .background(color = CurrentColors.background, shape = RoundedCornerShape(24.dp)),
+        modifier = modifier,
         horizontalAlignment = Alignment.CenterHorizontally,
         verticalArrangement = Arrangement.Center
     ) {
@@ -127,6 +131,7 @@ fun ContactSection(
 fun ContentSection(
     state: SiteState,
     onEvent: (SiteEvent) -> Unit = {},
+    portraitMode: Boolean = false,
 ) {
     Column(
         modifier = Modifier
@@ -144,7 +149,16 @@ fun ContentSection(
             key(tab) {
                 when (tab) {
                     SiteTabs.ABOUT -> {
-                        AboutSection(modifier = Modifier.fillMaxSize(), state = state, onEvent = onEvent)
+                        if (portraitMode) {
+                            AboutSectionPortrait(
+                                modifier = Modifier.fillMaxSize(),
+                                state = state,
+                                onEvent = onEvent
+                            )
+                        } else {
+                            AboutSection(modifier = Modifier.fillMaxSize(), state = state, onEvent = onEvent)
+                        }
+
                     }
 
                     SiteTabs.SKILLS_AND_TECHNOLOGIES -> {
@@ -220,7 +234,7 @@ fun AboutSection(
 @Composable
 fun AnimatedAboutMeParagraph(
     modifier: Modifier = Modifier,
-    sentences: List<String>,
+    sentences: List<String> = ABOUT_ME_LIST,
     delayBetween: Long = 1000L,
 ) {
     val visibleStates = remember { mutableStateListOf<Boolean>() }
@@ -238,7 +252,7 @@ fun AnimatedAboutMeParagraph(
     }
 
     Column(
-        modifier = modifier.fillMaxWidth(),
+        modifier = modifier.fillMaxWidth().padding(horizontal = 8.dp),
         verticalArrangement = Arrangement.spacedBy(16.dp)
     ) {
         sentences.forEachIndexed { index, sentence ->

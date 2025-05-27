@@ -2,8 +2,13 @@ package org.adam.resume.website
 
 import androidx.compose.runtime.State
 import androidx.compose.runtime.mutableStateOf
+import androidx.compose.ui.graphics.vector.ImageVector
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
+import compose.icons.FeatherIcons
+import compose.icons.feathericons.Clipboard
+import compose.icons.feathericons.Codesandbox
+import compose.icons.feathericons.Info
 import kotlinx.coroutines.isActive
 import kotlinx.coroutines.launch
 import org.adam.resume.website.ui.ViewportSize
@@ -27,10 +32,10 @@ sealed class SiteEvent {
     data class OnProjectClicked(val project: String) : SiteEvent()
 }
 
-enum class SiteTabs(val title: String) {
-    ABOUT("About"),
-    SKILLS_AND_TECHNOLOGIES("Skills and Technologies"),
-    PROJECTS("Projects"),
+enum class SiteTabs(val title: String, val icon: ImageVector) {
+    ABOUT(title = "About", icon = FeatherIcons.Info),
+    SKILLS_AND_TECHNOLOGIES(title = "Skills and Technologies", icon = FeatherIcons.Clipboard),
+    PROJECTS(title = "Projects", icon = FeatherIcons.Codesandbox),
 }
 
 class SiteViewModel : ViewModel() {

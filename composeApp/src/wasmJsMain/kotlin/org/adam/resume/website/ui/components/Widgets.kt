@@ -14,6 +14,7 @@ import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
+import androidx.compose.foundation.layout.width
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.Icon
 import androidx.compose.material.IconButton
@@ -64,7 +65,7 @@ import resumewebsite2025.composeapp.generated.resources.backgroundImage15
 
 @Composable
 fun HeaderIcon(
-    modifier: Modifier = Modifier.size(64.dp).padding(end = 16.dp),
+    modifier: Modifier = Modifier.size(64.dp).padding(4.dp),
     onClick: () -> Unit,
     imageVector: ImageVector,
     tint: Color = CurrentColors.onBackground
@@ -172,11 +173,11 @@ fun HeaderRowNew(
 }
 
 @Composable
-fun HeaderRow(
+fun HeaderRowPortrait(
     modifier: Modifier = Modifier,
     isDarkTheme: Boolean = true,
     onToggleTheme: (Boolean) -> Unit = {},
-    isAtBottom: Boolean,
+    onAboutMeSection: Boolean,
 ) {
     Row(
         modifier = modifier,
@@ -189,23 +190,27 @@ fun HeaderRow(
             onToggleTheme = onToggleTheme
         )
         Spacer(Modifier.weight(1f))
-        if (!isAtBottom) {
+        if (!onAboutMeSection) {
             HeaderIcon(
                 onClick = { openUrl(GITHUB_URL) },
                 imageVector = FeatherIcons.Github,
             )
+            Spacer(Modifier.width(16.dp))
             HeaderIcon(
                 onClick = { openUrl(LINKEDIN_URL) },
                 imageVector = FeatherIcons.Linkedin,
             )
+            Spacer(Modifier.width(16.dp))
             HeaderIcon(
                 onClick = { openEmail() },
                 imageVector = FeatherIcons.Mail,
             )
+            Spacer(Modifier.width(16.dp))
             HeaderIcon(
                 onClick = { openPdf() },
                 imageVector = FeatherIcons.Paperclip,
             )
+            Spacer(Modifier.width(16.dp))
         }
     }
 }
@@ -260,11 +265,11 @@ fun ThemeSwitch(modifier: Modifier = Modifier, isDarkTheme: Boolean = true, onTo
         Icon(
             imageVector = FeatherIcons.Sun,
             contentDescription = null,
-            modifier = Modifier.size(64.dp).padding(end = 16.dp),
+            modifier = Modifier.size(64.dp).padding(top = 2.dp, bottom = 2.dp, end = 16.dp),
             tint = CurrentColors.onBackground
         )
         Switch(
-            modifier = Modifier.padding(end = 16.dp),
+            modifier = Modifier.padding(top = 2.dp, bottom = 2.dp,end = 16.dp),
             checked = isDarkTheme,
             onCheckedChange = onToggleTheme,
             colors = SwitchDefaults.colors()
@@ -272,7 +277,7 @@ fun ThemeSwitch(modifier: Modifier = Modifier, isDarkTheme: Boolean = true, onTo
         Icon(
             imageVector = FeatherIcons.Moon,
             contentDescription = null,
-            modifier = Modifier.size(64.dp).padding(end = 16.dp),
+            modifier = Modifier.size(64.dp).padding(top = 2.dp, bottom = 2.dp,end = 16.dp),
             tint = CurrentColors.onBackground
         )
     }
