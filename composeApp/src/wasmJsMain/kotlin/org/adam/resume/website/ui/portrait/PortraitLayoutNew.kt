@@ -27,9 +27,9 @@ import org.adam.resume.website.SiteEvent.OnToggleThemeClicked
 import org.adam.resume.website.SiteState
 import org.adam.resume.website.SiteTabs
 import org.adam.resume.website.ui.components.HeaderRowPortrait
-import org.adam.resume.website.ui.landscape.AnimatedAboutMeParagraph
-import org.adam.resume.website.ui.landscape.ContactSection
-import org.adam.resume.website.ui.landscape.ContentSection
+import org.adam.resume.website.ui.content.AnimatedAboutMeParagraph
+import org.adam.resume.website.ui.content.ContactSection
+import org.adam.resume.website.ui.content.ContentSection
 import org.adam.resume.website.ui.theme.AppTheme
 import org.adam.resume.website.ui.theme.CurrentColors
 import org.adam.resume.website.ui.theme.CurrentTypography
@@ -109,7 +109,7 @@ fun PortraitLayoutNew(
 }
 
 @Composable
-fun BottomBarIconButton(
+private fun BottomBarIconButton(
     icon: ImageVector,
     label: String,
     targetTab: SiteTabs,
