@@ -144,7 +144,7 @@ fun ContentSection(
             key(tab) {
                 when (tab) {
                     SiteTabs.ABOUT -> {
-                       AboutSection(modifier = Modifier.fillMaxSize(), state = state, onEvent = onEvent)
+                        AboutSection(modifier = Modifier.fillMaxSize(), state = state, onEvent = onEvent)
                     }
 
                     SiteTabs.SKILLS_AND_TECHNOLOGIES -> {
@@ -224,7 +224,6 @@ fun AnimatedAboutMeParagraph(
     delayBetween: Long = 1000L,
 ) {
     val visibleStates = remember { mutableStateListOf<Boolean>() }
-    val themeColors = CurrentColors.listColors
 
     LaunchedEffect(Unit) {
         visibleStates.clear()
@@ -274,7 +273,8 @@ fun AnimatedAboutMeParagraph(
                 ) {
                     Surface(
                         modifier = Modifier
-                            .padding(horizontal = 24.dp)
+                            .fillMaxWidth(0.75f)
+                            .padding(vertical = 16.dp)
                             .clip(RoundedCornerShape(24.dp)),
                         color = color
                     ) {
@@ -301,7 +301,6 @@ fun WordGrid(
     clickedWord: String? = null,
     columns: GridCells = GridCells.Adaptive(minSize = 240.dp)
 ) {
-    val cornerOptions = listOf(8.dp, 16.dp, 24.dp, 32.dp)
     val colors = CurrentColors.listColors
 
     LazyVerticalGrid(

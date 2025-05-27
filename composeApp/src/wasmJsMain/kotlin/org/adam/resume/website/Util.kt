@@ -86,7 +86,8 @@ val WORD_LIST = listOf(
 
 val ABOUT_ME =
     "I'm Adam, a software engineer based in New York City focused on Android development with Kotlin and Jetpack Compose." +
-            " I've worked on large-scale production apps, handling everything from bug fixes to major feature development and codebase modernization." +
+            " I've worked on existing production apps, handling everything from fixing bugs to adding new features that users rely on." +
+            " I've also helped build apps from the ground up with teammates, making sure what we ship is solid and scalable." +
             " Over time, I’ve developed an interest in backend development and started building full-stack projects on my own to better understand how everything fits together." +
             " I'm always looking to sharpen my skills and build things that are easy to maintain and use."
 
