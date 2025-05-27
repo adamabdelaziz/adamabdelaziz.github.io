@@ -2,8 +2,8 @@ package org.adam.resume.website
 
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.remember
-import org.adam.resume.website.ui.landscape.LandscapeLayoutNew
-import org.adam.resume.website.ui.portrait.PortraitLayoutNew
+import org.adam.resume.website.ui.content.LandscapeLayoutNew
+import org.adam.resume.website.ui.content.PortraitLayoutNew
 import org.adam.resume.website.ui.rememberViewportSize
 
 @Composable

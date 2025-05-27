@@ -1,4 +1,4 @@
-package org.adam.resume.website.ui.portrait
+package org.adam.resume.website.ui.content
 
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Arrangement
@@ -27,9 +27,6 @@ import org.adam.resume.website.SiteEvent.OnToggleThemeClicked
 import org.adam.resume.website.SiteState
 import org.adam.resume.website.SiteTabs
 import org.adam.resume.website.ui.components.HeaderRowPortrait
-import org.adam.resume.website.ui.content.AnimatedAboutMeParagraph
-import org.adam.resume.website.ui.content.ContactSection
-import org.adam.resume.website.ui.content.ContentSection
 import org.adam.resume.website.ui.theme.AppTheme
 import org.adam.resume.website.ui.theme.CurrentColors
 import org.adam.resume.website.ui.theme.CurrentTypography
@@ -61,6 +58,7 @@ fun PortraitLayoutNew(
                                 )
                             },
                             onAboutMeSection = state.selectedTab == SiteTabs.ABOUT,
+                            iconSize = 16.dp,
                         )
                     }
                 )
@@ -94,10 +92,9 @@ fun PortraitLayoutNew(
                         .padding(paddingValues)
                         .background(CurrentColors.background)
                 ) {
-                    ContentSection(
+                    ContentSectionPortrait(
                         state = state,
                         onEvent = onEvent,
-                        portraitMode = true
                     )
                 }
             }
@@ -127,7 +124,7 @@ private fun BottomBarIconButton(
             Text(
                 textAlign = TextAlign.Center,
                 text = label,
-                style = CurrentTypography.h3,
+                style = CurrentTypography.button,
                 color = if (state.selectedTab == targetTab) CurrentColors.primary else CurrentColors.onBackground
             )
         }
@@ -141,7 +138,7 @@ fun AboutSectionPortrait(
     onEvent: (SiteEvent) -> Unit
 ) {
     Row(modifier = modifier, horizontalArrangement = Arrangement.Center, verticalAlignment = Alignment.CenterVertically) {
-        ContactSection(modifier = Modifier.weight(1f), state = state, onEvent = onEvent)
+        //ContactSection(modifier = Modifier.weight(1f), state = state, onEvent = onEvent)
         AnimatedAboutMeParagraph(modifier = Modifier.weight(1f), sentences = ABOUT_ME_LIST)
     }
 }

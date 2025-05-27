@@ -1,4 +1,4 @@
-package org.adam.resume.website.ui.landscape
+package org.adam.resume.website.ui.content
 
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Column
@@ -14,8 +14,6 @@ import androidx.compose.ui.unit.dp
 import org.adam.resume.website.SiteEvent
 import org.adam.resume.website.SiteState
 import org.adam.resume.website.ui.components.HeaderRowNew
-import org.adam.resume.website.ui.content.ContactSection
-import org.adam.resume.website.ui.content.ContentSection
 import org.adam.resume.website.ui.theme.AppTheme
 import org.adam.resume.website.ui.theme.CurrentColors
 import org.adam.resume.website.ui.theme.DarkPastelAppColors
