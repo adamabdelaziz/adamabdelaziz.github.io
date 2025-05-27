@@ -11,7 +11,6 @@ import compose.icons.feathericons.Codesandbox
 import compose.icons.feathericons.Info
 import kotlinx.coroutines.isActive
 import kotlinx.coroutines.launch
-import org.adam.resume.website.ui.ViewportSize
 import org.adam.resume.website.ui.components.Project
 import org.adam.resume.website.ui.components.projectList
 
@@ -19,14 +18,12 @@ data class SiteState(
     val selectedTab: SiteTabs = SiteTabs.ABOUT,
     val isDarkTheme: Boolean = true,
     val outlinedText: String = "Software Engineer",
-    val viewportSize: ViewportSize = ViewportSize(0, 0),
     val clickedSkill: String? = null,
     val clickedProject: Project? = null,
 )
 
 sealed class SiteEvent {
     data class OnTabSelected(val tab: SiteTabs) : SiteEvent()
-    data class OnViewportSizeChanged(val viewportSize: ViewportSize) : SiteEvent()
     data object OnToggleThemeClicked : SiteEvent()
     data class OnSkillClicked(val skill: String) : SiteEvent()
     data class OnProjectClicked(val project: String) : SiteEvent()
@@ -67,9 +64,7 @@ class SiteViewModel : ViewModel() {
                 _state.value = _state.value.copy(isDarkTheme = !_state.value.isDarkTheme)
             }
 
-            is SiteEvent.OnViewportSizeChanged -> {
-                _state.value = _state.value.copy(viewportSize = event.viewportSize)
-            }
+
 
             is SiteEvent.OnSkillClicked -> {
                 _state.value = _state.value.copy(clickedSkill = event.skill)
