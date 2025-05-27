@@ -54,7 +54,7 @@ external fun encodeURIComponent(str: String): String
 
 const val GITHUB_URL = "https://github.com/adamabdelaziz"
 const val LINKEDIN_URL = "https://www.linkedin.com/in/adamabdelaziz"
-const val RESUME_URL = "https://adamabdelaziz.github.io/ResumeWebsite/static/AdamAbdelazizResume.pdf" //TODO: Change when replacing old website
+const val RESUME_URL = "https://adamabdelaziz.github.io/ResumeWebsite/static/AdamAbdelazizResume.pdf"
 
 val WORD_LIST = listOf(
     "Kotlin",

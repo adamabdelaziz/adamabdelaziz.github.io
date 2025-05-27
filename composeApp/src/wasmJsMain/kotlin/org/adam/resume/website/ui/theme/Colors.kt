@@ -101,7 +101,6 @@ val LightPastelColors = listOf(
     PastelSeafoam,
     PastelLilac,
     PastelCoral,
-    PastelGray,
 )
 
 val DarkPastelColors = listOf(
