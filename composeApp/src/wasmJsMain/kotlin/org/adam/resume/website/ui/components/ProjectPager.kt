@@ -35,6 +35,7 @@ import compose.icons.feathericons.Github
 import kotlinx.coroutines.launch
 import org.adam.resume.website.openUrl
 import org.adam.resume.website.ui.theme.CurrentColors
+import org.adam.resume.website.ui.theme.CurrentDimensions
 import org.adam.resume.website.ui.theme.CurrentTypography
 
 @Composable
@@ -180,7 +181,7 @@ fun ProjectView(
             text = project.title,
             color = CurrentColors.onSecondary,
             style = CurrentTypography.h1,
-            modifier = Modifier.fillMaxWidth().padding(horizontal = 32.dp, vertical = 32.dp),
+            modifier = Modifier.fillMaxWidth().padding(CurrentDimensions.spacingMedium),
             textAlign = TextAlign.Center
         )
 
@@ -189,25 +190,25 @@ fun ProjectView(
             color = CurrentColors.onSecondary,
             style = CurrentTypography.h2,
             textAlign = TextAlign.Center,
-            modifier = Modifier.fillMaxWidth().padding(horizontal = 16.dp)
+            modifier = Modifier.fillMaxWidth().padding(horizontal = CurrentDimensions.spacingSmall)
         )
 
-        Spacer(Modifier.height(32.dp))
+        Spacer(Modifier.height(CurrentDimensions.spacingMedium))
 
         project.points.forEach { point ->
             Text(
                 text = "• $point",
                 color = CurrentColors.onSecondary,
                 style = CurrentTypography.h2,
-                modifier = Modifier.fillMaxWidth().padding(horizontal = 32.dp, vertical = 16.dp)
+                modifier = Modifier.fillMaxWidth().padding(horizontal = CurrentDimensions.spacingMedium, vertical = CurrentDimensions.spacingSmall)
             )
         }
 
-        Spacer(Modifier.height(32.dp))
+        Spacer(Modifier.height(CurrentDimensions.spacingMedium))
 
         if (project.githubUrl != null) {
             HeaderIcon(
-                modifier = Modifier.size(96.dp).padding(vertical = 12.dp),
+                modifier = Modifier.size(CurrentDimensions.minTouchTargetSize).padding(vertical = CurrentDimensions.spacingSmall),
                 onClick = { openUrl(project.githubUrl) },
                 imageVector = FeatherIcons.Github,
             )
@@ -218,7 +219,7 @@ fun ProjectView(
                 style = CurrentTypography.h3,
                 fontStyle = FontStyle.Italic,
                 textAlign = TextAlign.Center,
-                modifier = Modifier.fillMaxWidth().padding(vertical = 12.dp)
+                modifier = Modifier.fillMaxWidth().padding(vertical = CurrentDimensions.spacingSmall)
             )
         }
     }

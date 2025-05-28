@@ -14,6 +14,7 @@ import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
 import androidx.compose.runtime.setValue
+import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.geometry.Offset
@@ -21,6 +22,7 @@ import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.text.TextStyle
 import androidx.compose.ui.unit.IntOffset
 import androidx.compose.ui.unit.IntSize
+import androidx.compose.ui.unit.TextUnit
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import kotlinx.coroutines.delay
@@ -32,7 +34,7 @@ import kotlin.math.sin
 import kotlin.random.Random
 
 @Composable
-fun OrbitingWords(modifier: Modifier = Modifier, words: List<String>, colors: List<Color>, textColor: Color) {
+fun OrbitingWords(modifier: Modifier = Modifier, words: List<String>, colors: List<Color>, textColor: Color, fontSize: TextUnit = 20.sp) {
     BoxWithConstraints(modifier = modifier.fillMaxSize()) {
         val containerSize = IntSize(constraints.maxWidth, constraints.maxHeight)
         val center = Offset(containerSize.width / 2f, containerSize.height / 2f)
@@ -69,9 +71,12 @@ fun OrbitingWords(modifier: Modifier = Modifier, words: List<String>, colors: Li
             }
         }
 
-        Box(modifier = Modifier.fillMaxSize()) {
+        Box(
+            modifier = Modifier.fillMaxSize(),
+            contentAlignment = Alignment.Center
+        ) {
             items.forEach { item ->
-                OrbitingWord(center = center, item = item, textColor = textColor)
+                OrbitingWord(item = item, textColor = textColor, fontSize = fontSize)
             }
         }
     }
@@ -89,21 +94,22 @@ private class OrbitingItemState(
 }
 
 @Composable
-private fun OrbitingWord(center: Offset, item: OrbitingItemState, textColor: Color) {
+private fun OrbitingWord(item: OrbitingItemState, textColor: Color, fontSize: TextUnit = 20.sp) {
     val radians = (item.angle * PI / 180).toFloat()
-    val x = center.x + item.radius * cos(radians)
-    val y = center.y + item.radius * sin(radians)
+    val offsetX = item.radius * cos(radians)
+    val offsetY = item.radius * sin(radians)
 
     Surface(
         modifier = Modifier
-            .offset { IntOffset(x.toInt(), y.toInt()) }
-            .padding(16.dp)
+            .offset {
+                IntOffset(offsetX.toInt(), offsetY.toInt())
+            }
             .clip(CircleShape),
         color = item.color
     ) {
         Text(
             text = item.word,
-            style = TextStyle(color = textColor, fontSize = 20.sp),
+            style = TextStyle(color = textColor, fontSize = fontSize),
             modifier = Modifier.padding(24.dp)
         )
     }

@@ -23,9 +23,7 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.graphics.Color
-import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
-import androidx.compose.ui.unit.sp
 import org.adam.resume.website.SiteEvent
 import org.adam.resume.website.SiteState
 import org.adam.resume.website.WORD_LIST
@@ -34,7 +32,8 @@ import org.adam.resume.website.ui.components.BouncyAnimatedSurfaceContent
 import org.adam.resume.website.ui.components.ProjectView
 import org.adam.resume.website.ui.components.projectList
 import org.adam.resume.website.ui.theme.CurrentColors
-
+import org.adam.resume.website.ui.theme.CurrentDimensions
+import org.adam.resume.website.ui.theme.CurrentTypography
 
 @Composable
 fun ProjectsSection(
@@ -43,7 +42,7 @@ fun ProjectsSection(
 ) {
     Row(modifier = Modifier.fillMaxSize().background(CurrentColors.background)) {
         Column(
-            modifier = Modifier.weight(1f).fillMaxHeight().padding(end = 48.dp),
+            modifier = Modifier.weight(1f).fillMaxHeight(),
             horizontalAlignment = Alignment.CenterHorizontally,
             verticalArrangement = Arrangement.Center
         ) {
@@ -58,7 +57,7 @@ fun ProjectsSection(
         }
 
         BouncyAnimatedSurfaceContent(
-            modifier = Modifier.padding(vertical = 48.dp, horizontal = 24.dp).weight(1f).fillMaxHeight(),
+            modifier = Modifier.padding(vertical = CurrentDimensions.spacingLarge, horizontal = CurrentDimensions.spacingSmall).weight(1f).fillMaxHeight(),
             targetState = state.clickedProject,
         ) {
             it?.let {
@@ -102,11 +101,10 @@ fun WordGrid(
                 contentAlignment = Alignment.Center
             ) {
                 Text(
+                    style = CurrentTypography.h2,
                     text = word,
-                    fontSize = 24.sp,
                     color = if (state.isDarkTheme) Color.White else Color.Black,
                     modifier = Modifier.padding(8.dp),
-                    textAlign = TextAlign.Center
                 )
             }
         }

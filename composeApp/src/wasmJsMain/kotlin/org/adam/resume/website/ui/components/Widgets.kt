@@ -14,7 +14,6 @@ import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
-import androidx.compose.foundation.layout.width
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.Icon
 import androidx.compose.material.IconButton
@@ -42,11 +41,11 @@ import androidx.compose.ui.unit.Dp
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import compose.icons.FeatherIcons
+import compose.icons.feathericons.File
 import compose.icons.feathericons.Github
 import compose.icons.feathericons.Linkedin
 import compose.icons.feathericons.Mail
 import compose.icons.feathericons.Moon
-import compose.icons.feathericons.Paperclip
 import compose.icons.feathericons.Sun
 import org.adam.resume.website.GITHUB_URL
 import org.adam.resume.website.LINKEDIN_URL
@@ -57,6 +56,7 @@ import org.adam.resume.website.openEmail
 import org.adam.resume.website.openPdf
 import org.adam.resume.website.openUrl
 import org.adam.resume.website.ui.theme.CurrentColors
+import org.adam.resume.website.ui.theme.CurrentDimensions
 import org.adam.resume.website.ui.theme.CurrentShapes
 import org.adam.resume.website.ui.theme.CurrentTypography
 import org.jetbrains.compose.resources.painterResource
@@ -144,13 +144,12 @@ fun HeaderRowNew(
         modifier = modifier,
         verticalAlignment = Alignment.CenterVertically
     ) {
-        Box(modifier = Modifier.weight(1f)) {
-            ThemeSwitch(
-                modifier = Modifier.background(CurrentColors.background),
-                isDarkTheme = state.isDarkTheme,
-                onToggleTheme = { onEvent(SiteEvent.OnToggleThemeClicked) }
-            )
-        }
+
+        ThemeSwitch(
+            modifier = Modifier.weight(1f).background(CurrentColors.background),
+            isDarkTheme = state.isDarkTheme,
+            onToggleTheme = { onEvent(SiteEvent.OnToggleThemeClicked) }
+        )
 
         Row(
             modifier = Modifier.weight(2f),
@@ -183,7 +182,7 @@ fun HeaderRowPortrait(
 ) {
     Row(
         modifier = modifier,
-        horizontalArrangement = Arrangement.SpaceBetween,
+        horizontalArrangement = Arrangement.End,
         verticalAlignment = Alignment.CenterVertically
     ) {
         ThemeSwitch(
@@ -192,33 +191,6 @@ fun HeaderRowPortrait(
             isDarkTheme = isDarkTheme,
             onToggleTheme = onToggleTheme
         )
-        Spacer(Modifier.weight(1f))
-        if (!onAboutMeSection) {
-            HeaderIcon(
-                modifier = Modifier.size(iconSize).padding(2.dp),
-                onClick = { openUrl(GITHUB_URL) },
-                imageVector = FeatherIcons.Github,
-            )
-            Spacer(Modifier.width(8.dp))
-            HeaderIcon(
-                modifier = Modifier.size(iconSize).padding(2.dp),
-                onClick = { openUrl(LINKEDIN_URL) },
-                imageVector = FeatherIcons.Linkedin,
-            )
-            Spacer(Modifier.width(8.dp))
-            HeaderIcon(
-                modifier = Modifier.size(iconSize).padding(2.dp),
-                onClick = { openEmail() },
-                imageVector = FeatherIcons.Mail,
-            )
-            Spacer(Modifier.width(8.dp))
-            HeaderIcon(
-                modifier = Modifier.size(iconSize).padding(2.dp),
-                onClick = { openPdf() },
-                imageVector = FeatherIcons.Paperclip,
-            )
-            Spacer(Modifier.width(8.dp))
-        }
     }
 }
 
@@ -231,27 +203,27 @@ fun IconColumn(modifier: Modifier = Modifier) {
         verticalArrangement = Arrangement.Center
     ) {
         HeaderIconExtended(
-            modifier = Modifier.padding(vertical = 16.dp),
+            modifier = Modifier.padding(vertical = CurrentDimensions.spacingSmall),
             onClick = { openUrl(GITHUB_URL) },
             imageVector = FeatherIcons.Github,
             label = "Github"
         )
         HeaderIconExtended(
-            modifier = Modifier.padding(bottom = 16.dp),
+            modifier = Modifier.padding(bottom = CurrentDimensions.spacingSmall),
             onClick = { openUrl(LINKEDIN_URL) },
             imageVector = FeatherIcons.Linkedin,
             label = "LinkedIn"
         )
         HeaderIconExtended(
-            modifier = Modifier.padding(bottom = 16.dp),
+            modifier = Modifier.padding(bottom = CurrentDimensions.spacingSmall),
             onClick = { openEmail() },
             imageVector = FeatherIcons.Mail,
             label = "E-Mail Me"
         )
         HeaderIconExtended(
-            modifier = Modifier.padding(bottom = 16.dp),
+            modifier = Modifier.padding(bottom = CurrentDimensions.spacingSmall),
             onClick = { openPdf() },
-            imageVector = FeatherIcons.Paperclip,
+            imageVector = FeatherIcons.File,
             label = "My Resume"
         )
 
@@ -272,11 +244,11 @@ fun ThemeSwitch(modifier: Modifier = Modifier, isDarkTheme: Boolean = true, onTo
         Icon(
             imageVector = FeatherIcons.Sun,
             contentDescription = null,
-            modifier = Modifier.size(iconSize).padding(top = 2.dp, bottom = 2.dp, end = 16.dp),
+            modifier = Modifier.size(iconSize).padding(end = CurrentDimensions.spacingSmall),
             tint = CurrentColors.onBackground
         )
         Switch(
-            modifier = Modifier.padding(top = 2.dp, bottom = 2.dp, end = 16.dp),
+            modifier = Modifier.padding(end = CurrentDimensions.spacingSmall),
             checked = isDarkTheme,
             onCheckedChange = onToggleTheme,
             colors = SwitchDefaults.colors(checkedThumbColor = CurrentColors.primary, checkedTrackColor = CurrentColors.primary)
@@ -284,7 +256,7 @@ fun ThemeSwitch(modifier: Modifier = Modifier, isDarkTheme: Boolean = true, onTo
         Icon(
             imageVector = FeatherIcons.Moon,
             contentDescription = null,
-            modifier = Modifier.size(iconSize).padding(top = 2.dp, bottom = 2.dp, end = 16.dp),
+            modifier = Modifier.size(iconSize).padding(end = CurrentDimensions.spacingSmall),
             tint = CurrentColors.onBackground
         )
     }

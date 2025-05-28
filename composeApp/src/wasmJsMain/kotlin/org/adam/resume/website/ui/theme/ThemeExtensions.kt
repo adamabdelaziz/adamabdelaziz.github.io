@@ -13,3 +13,7 @@ val CurrentShapes: AppShapes
 val CurrentTypography: AppTypography
     @Composable
     get() = LocalAppTypography.current
+
+val CurrentDimensions: AppDimensions
+    @Composable
+    get() = LocalAppDimensions.current

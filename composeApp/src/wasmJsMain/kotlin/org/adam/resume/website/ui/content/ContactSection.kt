@@ -15,6 +15,7 @@ import androidx.compose.foundation.layout.padding
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.unit.TextUnit
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import org.adam.resume.website.SiteEvent
@@ -27,6 +28,8 @@ fun ContactSection(
     modifier: Modifier = Modifier,
     state: SiteState,
     onEvent: (SiteEvent) -> Unit = {},
+    fontSize: TextUnit = 64.sp,
+    subFontSize: TextUnit = 48.sp
 ) {
     Column(
         modifier = modifier,
@@ -35,6 +38,7 @@ fun ContactSection(
     ) {
         Spacer(Modifier.height(64.dp))
         OutlinedText(
+            fontSize = fontSize,
             text = "Adam Abdelaziz",
             modifier = Modifier.padding(bottom = 64.dp),
         )
@@ -52,7 +56,7 @@ fun ContactSection(
             },
             label = "OutlinedTextTransition"
         ) {
-            OutlinedText(text = it, fontSize = 48.sp)
+            OutlinedText(text = it, fontSize =subFontSize)
         }
         IconColumn()
     }

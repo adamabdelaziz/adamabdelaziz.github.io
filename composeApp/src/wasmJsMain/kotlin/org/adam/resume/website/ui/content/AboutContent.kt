@@ -29,6 +29,7 @@ import org.adam.resume.website.ABOUT_ME_LIST
 import org.adam.resume.website.SiteEvent
 import org.adam.resume.website.SiteState
 import org.adam.resume.website.ui.theme.CurrentColors
+import org.adam.resume.website.ui.theme.CurrentDimensions
 import org.adam.resume.website.ui.theme.CurrentTypography
 
 @Composable
@@ -72,8 +73,8 @@ fun AnimatedAboutMeParagraph(
     }
 
     Column(
-        modifier = modifier.fillMaxWidth().padding(horizontal = 8.dp),
-        verticalArrangement = Arrangement.spacedBy(16.dp)
+        modifier = modifier.fillMaxWidth().padding(horizontal = CurrentDimensions.spacingTiny),
+        verticalArrangement = Arrangement.spacedBy(CurrentDimensions.spacingSmall)
     ) {
         sentences.forEachIndexed { index, sentence ->
             val alignment = if (index % 2 == 0) Alignment.CenterStart else Alignment.CenterEnd
@@ -108,7 +109,7 @@ fun AnimatedAboutMeParagraph(
                     Surface(
                         modifier = Modifier
                             .fillMaxWidth(0.75f)
-                            .padding(vertical = 16.dp)
+                            .padding(vertical = CurrentDimensions.spacingSmall)
                             .clip(RoundedCornerShape(24.dp)),
                         color = color
                     ) {

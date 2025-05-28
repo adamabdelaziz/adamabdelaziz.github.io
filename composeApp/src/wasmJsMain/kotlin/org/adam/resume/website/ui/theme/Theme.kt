@@ -8,12 +8,14 @@ fun AppTheme(
     colors: AppColors = DarkPopAppColors,
     shapes: AppShapes = AppShapes(),
     typography: AppTypography = AppTypography(),
+    dimensions: AppDimensions = ExpandedDimensions,
     content: @Composable () -> Unit
 ) {
     CompositionLocalProvider(
         LocalAppColors provides colors,
         LocalAppShapes provides shapes,
         LocalAppTypography provides  typography,
+        LocalAppDimensions provides dimensions
     ) {
         content()
     }
