@@ -8,9 +8,9 @@ import androidx.compose.animation.fadeOut
 import androidx.compose.animation.scaleIn
 import androidx.compose.animation.togetherWith
 import androidx.compose.foundation.background
+import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.ColumnScope
-import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
@@ -46,12 +46,12 @@ fun <T> BouncyAnimatedSurfaceContent(
         state?.let {
             Column(
                 modifier = Modifier
-                    .fillMaxSize()
                     .background(
                         shape = RoundedCornerShape(cornerRadius),
                         color = surfaceColor
                     ),
                 horizontalAlignment = Alignment.CenterHorizontally,
+                verticalArrangement = Arrangement.Center,
             ) {
                 content(it)
             }

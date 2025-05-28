@@ -55,7 +55,7 @@ val CompactTypography = AppTypography(
     h1 = TextStyle(
         fontFamily = FontFamily.Default,
         fontWeight = FontWeight.Bold,
-        fontSize = 26.sp
+        fontSize = 30.sp
     ),
     h2 = TextStyle(
         fontFamily = FontFamily.Default,
@@ -85,7 +85,7 @@ val CompactTypography = AppTypography(
     caption = TextStyle(
         fontFamily = FontFamily.Default,
         fontWeight = FontWeight.Normal,
-        fontSize = 20.sp
+        fontSize = 24.sp
     ),
     overline = TextStyle(
         fontFamily = FontFamily.Default,

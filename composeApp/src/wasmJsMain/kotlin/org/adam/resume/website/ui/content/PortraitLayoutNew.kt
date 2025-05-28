@@ -99,7 +99,7 @@ fun PortraitLayoutNew(
         drawerContent = {
             Column(verticalArrangement = Arrangement.Center, horizontalAlignment = Alignment.CenterHorizontally) {
                 ContactSection(
-                    modifier = Modifier.fillMaxSize().background(color = CurrentColors.background,),
+                    modifier = Modifier.fillMaxSize().background(color = CurrentColors.background),
                     state = state,
                     onEvent = onEvent,
                     fontSize = CurrentTypography.h1.fontSize,

@@ -22,7 +22,7 @@ import androidx.compose.runtime.remember
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
-import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
 import org.adam.resume.website.SiteEvent
 import org.adam.resume.website.SiteState
@@ -40,7 +40,7 @@ fun ProjectsSection(
     state: SiteState,
     onEvent: (SiteEvent) -> Unit = {},
 ) {
-    Row(modifier = Modifier.fillMaxSize().background(CurrentColors.background)) {
+    Row(modifier = Modifier.fillMaxSize().background(CurrentColors.background), verticalAlignment = Alignment.CenterVertically) {
         Column(
             modifier = Modifier.weight(1f).fillMaxHeight(),
             horizontalAlignment = Alignment.CenterHorizontally,
@@ -57,11 +57,11 @@ fun ProjectsSection(
         }
 
         BouncyAnimatedSurfaceContent(
-            modifier = Modifier.padding(vertical = CurrentDimensions.spacingLarge, horizontal = CurrentDimensions.spacingSmall).weight(1f).fillMaxHeight(),
+            modifier = Modifier.padding(vertical = CurrentDimensions.spacingLarge, horizontal = CurrentDimensions.spacingSmall).weight(1f).fillMaxWidth(),
             targetState = state.clickedProject,
         ) {
             it?.let {
-                ProjectView(modifier = Modifier.fillMaxSize(), project = it)
+                ProjectView(modifier = Modifier.fillMaxWidth(), project = it)
             }
         }
     }
@@ -103,8 +103,9 @@ fun WordGrid(
                 Text(
                     style = CurrentTypography.h2,
                     text = word,
-                    color = if (state.isDarkTheme) Color.White else Color.Black,
+                    color = CurrentColors.onBackground,
                     modifier = Modifier.padding(8.dp),
+                    textAlign = TextAlign.Center
                 )
             }
         }
