@@ -254,7 +254,8 @@ val kryptoProject = Project(
         "Uses the Jupiter API to get quotes and swap Solana tokens",
         "MVI architecture with Kotlin Flow and Jetpack Compose for UI",
         "Ktor for network calls and Koin for dependency injection",
-    )
+    ),
+    githubUrl = "https://github.com/adamabdelaziz/Krypto"
 )
 
 val composeWeather = Project(
