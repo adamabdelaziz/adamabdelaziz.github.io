@@ -1,7 +1,5 @@
 package org.adam.resume.website
 
-import androidx.compose.runtime.State
-import androidx.compose.runtime.mutableStateOf
 import androidx.compose.ui.graphics.vector.ImageVector
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
@@ -9,6 +7,10 @@ import compose.icons.FeatherIcons
 import compose.icons.feathericons.Clipboard
 import compose.icons.feathericons.Codesandbox
 import compose.icons.feathericons.Info
+import kotlinx.coroutines.delay
+import kotlinx.coroutines.flow.MutableStateFlow
+import kotlinx.coroutines.flow.StateFlow
+import kotlinx.coroutines.flow.update
 import kotlinx.coroutines.isActive
 import kotlinx.coroutines.launch
 import org.adam.resume.website.ui.components.Project
@@ -27,6 +29,7 @@ sealed class SiteEvent {
     data object OnToggleThemeClicked : SiteEvent()
     data class OnSkillClicked(val skill: String) : SiteEvent()
     data class OnProjectClicked(val project: String) : SiteEvent()
+
 }
 
 enum class SiteTabs(val title: String, val icon: ImageVector) {
@@ -36,9 +39,9 @@ enum class SiteTabs(val title: String, val icon: ImageVector) {
 }
 
 class SiteViewModel : ViewModel() {
-    private val _state = mutableStateOf(SiteState())
+    private val _state = MutableStateFlow(SiteState())
 
-    val state: State<SiteState>
+    val state: StateFlow<SiteState>
         get() = _state
 
     private val listOfTextChoices = listOf("Software Engineer", "Kotlin Enthusiast", "Mobile Developer", "Android Engineer")
@@ -49,7 +52,7 @@ class SiteViewModel : ViewModel() {
                 _state.value = _state.value.copy(
                     outlinedText = listOfTextChoices.random()
                 )
-                kotlinx.coroutines.delay(3000)
+                delay(3000)
             }
         }
     }
@@ -57,22 +60,29 @@ class SiteViewModel : ViewModel() {
     fun onEvent(event: SiteEvent) {
         when (event) {
             is SiteEvent.OnTabSelected -> {
-                _state.value = _state.value.copy(selectedTab = event.tab)
+                _state.update {
+                    it.copy(selectedTab = event.tab)
+                }
             }
 
             is SiteEvent.OnToggleThemeClicked -> {
-                _state.value = _state.value.copy(isDarkTheme = !_state.value.isDarkTheme)
+                _state.update {
+                    it.copy(isDarkTheme = !_state.value.isDarkTheme)
+                }
             }
 
 
-
             is SiteEvent.OnSkillClicked -> {
-                _state.value = _state.value.copy(clickedSkill = event.skill)
+                _state.update {
+                    it.copy(clickedSkill = event.skill)
+                }
             }
 
             is SiteEvent.OnProjectClicked -> {
                 val project = projectList.firstOrNull { it.title == event.project }
-                _state.value = _state.value.copy(clickedProject = project)
+                _state.update {
+                    it.copy(clickedProject = project)
+                }
             }
         }
     }

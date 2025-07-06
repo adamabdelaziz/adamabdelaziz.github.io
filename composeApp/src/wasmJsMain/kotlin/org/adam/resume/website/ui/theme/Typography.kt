@@ -52,45 +52,36 @@ data class AppTypography(
 )
 val BaseTypography = AppTypography()
 val CompactTypography = AppTypography(
-    h1 = TextStyle(
-        fontFamily = FontFamily.Default,
-        fontWeight = FontWeight.Bold,
-        fontSize = 30.sp
-    ),
-    h2 = TextStyle(
-        fontFamily = FontFamily.Default,
-        fontWeight = FontWeight.Bold,
-        fontSize = 14.sp
-    ),
-    h3 = TextStyle(
-        fontFamily = FontFamily.Default,
-        fontWeight = FontWeight.SemiBold,
-        fontSize = 12.sp
-    ),
-    body1 = TextStyle(
-        fontFamily = FontFamily.Default,
-        fontWeight = FontWeight.Normal,
-        fontSize = 14.sp
-    ),
-    body2 = TextStyle(
-        fontFamily = FontFamily.Default,
-        fontWeight = FontWeight.Normal,
-        fontSize = 12.sp
-    ),
-    button = TextStyle(
-        fontFamily = FontFamily.Default,
-        fontWeight = FontWeight.Bold,
-        fontSize = 12.sp
-    ),
-    caption = TextStyle(
-        fontFamily = FontFamily.Default,
-        fontWeight = FontWeight.Normal,
-        fontSize = 24.sp
-    ),
-    overline = TextStyle(
-        fontFamily = FontFamily.Default,
-        fontWeight = FontWeight.Normal,
-        fontSize = 8.sp
-    )
+    h1 = TextStyle(fontSize = 24.sp, fontWeight = FontWeight.Bold),
+    h2 = TextStyle(fontSize = 20.sp, fontWeight = FontWeight.Bold),
+    h3 = TextStyle(fontSize = 18.sp, fontWeight = FontWeight.SemiBold),
+    body1 = TextStyle(fontSize = 14.sp, fontWeight = FontWeight.Normal),
+    body2 = TextStyle(fontSize = 12.sp, fontWeight = FontWeight.Normal),
+    button = TextStyle(fontSize = 13.sp, fontWeight = FontWeight.Medium),
+    caption = TextStyle(fontSize = 11.sp, fontWeight = FontWeight.Normal),
+    overline = TextStyle(fontSize = 10.sp, fontWeight = FontWeight.Normal),
 )
+
+val MediumTypography = AppTypography(
+    h1 = TextStyle(fontSize = 28.sp, fontWeight = FontWeight.Bold),
+    h2 = TextStyle(fontSize = 22.sp, fontWeight = FontWeight.Bold),
+    h3 = TextStyle(fontSize = 20.sp, fontWeight = FontWeight.Medium),
+    body1 = TextStyle(fontSize = 16.sp, fontWeight = FontWeight.Normal),
+    body2 = TextStyle(fontSize = 14.sp, fontWeight = FontWeight.Normal),
+    button = TextStyle(fontSize = 14.sp, fontWeight = FontWeight.Medium),
+    caption = TextStyle(fontSize = 12.sp, fontWeight = FontWeight.Normal),
+    overline = TextStyle(fontSize = 10.sp, fontWeight = FontWeight.Normal),
+)
+
+val ExpandedTypography = AppTypography(
+    h1 = TextStyle(fontSize = 32.sp, fontWeight = FontWeight.Bold),
+    h2 = TextStyle(fontSize = 26.sp, fontWeight = FontWeight.Bold),
+    h3 = TextStyle(fontSize = 22.sp, fontWeight = FontWeight.Medium),
+    body1 = TextStyle(fontSize = 18.sp, fontWeight = FontWeight.Normal),
+    body2 = TextStyle(fontSize = 16.sp, fontWeight = FontWeight.Normal),
+    button = TextStyle(fontSize = 15.sp, fontWeight = FontWeight.Medium),
+    caption = TextStyle(fontSize = 13.sp, fontWeight = FontWeight.Normal),
+    overline = TextStyle(fontSize = 10.sp, fontWeight = FontWeight.Normal),
+)
+
 val LocalAppTypography = compositionLocalOf { AppTypography() }

@@ -74,7 +74,7 @@ fun AnimatedAboutMeParagraph(
 
     Column(
         modifier = modifier.fillMaxWidth().padding(horizontal = CurrentDimensions.spacingTiny),
-        verticalArrangement = Arrangement.spacedBy(CurrentDimensions.spacingSmall)
+        verticalArrangement = Arrangement.spacedBy(CurrentDimensions.spacingTiny)
     ) {
         sentences.forEachIndexed { index, sentence ->
             val alignment = if (index % 2 == 0) Alignment.CenterStart else Alignment.CenterEnd
@@ -109,12 +109,12 @@ fun AnimatedAboutMeParagraph(
                     Surface(
                         modifier = Modifier
                             .fillMaxWidth(0.75f)
-                            .padding(vertical = CurrentDimensions.spacingSmall)
+                            .padding(CurrentDimensions.spacingSmall)
                             .clip(RoundedCornerShape(24.dp)),
                         color = color
                     ) {
                         Text(
-                            modifier = Modifier.padding(16.dp),
+                            modifier = Modifier.padding(CurrentDimensions.spacingMedium),
                             text = sentence,
                             style = CurrentTypography.h2,
                             color = CurrentColors.onSurface,

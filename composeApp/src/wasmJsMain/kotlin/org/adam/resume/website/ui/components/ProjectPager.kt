@@ -199,7 +199,7 @@ fun ProjectView(
             Text(
                 text = "• $point",
                 color = CurrentColors.onSecondary,
-                style = CurrentTypography.h2,
+                style = CurrentTypography.h3,
                 modifier = Modifier.fillMaxWidth().padding(horizontal = CurrentDimensions.spacingMedium, vertical = CurrentDimensions.spacingSmall)
             )
         }
@@ -208,7 +208,7 @@ fun ProjectView(
 
         if (project.githubUrl != null) {
             HeaderIcon(
-                modifier = Modifier.size(CurrentDimensions.minTouchTargetSize).padding(vertical = CurrentDimensions.spacingSmall),
+                modifier = Modifier.padding(vertical = CurrentDimensions.spacingSmall).size(CurrentDimensions.iconSizeLarge),
                 onClick = { openUrl(project.githubUrl) },
                 imageVector = FeatherIcons.Github,
             )
@@ -281,4 +281,4 @@ val kinetic = Project(
     ),
 )
 
-val projectList = listOf(kinetic, kryptoProject, composeWeather, kovidProject, )
+val projectList = listOf(kinetic, kryptoProject, composeWeather, kovidProject)

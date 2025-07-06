@@ -23,10 +23,10 @@ import androidx.compose.ui.text.TextStyle
 import androidx.compose.ui.unit.IntOffset
 import androidx.compose.ui.unit.IntSize
 import androidx.compose.ui.unit.TextUnit
-import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.isActive
+import org.adam.resume.website.ui.theme.CurrentDimensions
 import kotlin.math.PI
 import kotlin.math.cos
 import kotlin.math.min
@@ -110,7 +110,7 @@ private fun OrbitingWord(item: OrbitingItemState, textColor: Color, fontSize: Te
         Text(
             text = item.word,
             style = TextStyle(color = textColor, fontSize = fontSize),
-            modifier = Modifier.padding(24.dp)
+            modifier = Modifier.padding(CurrentDimensions.spacingMedium)
         )
     }
 }

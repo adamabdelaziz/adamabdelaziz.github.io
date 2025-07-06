@@ -10,13 +10,13 @@ import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.key
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.unit.sp
 import org.adam.resume.website.SiteEvent
 import org.adam.resume.website.SiteState
 import org.adam.resume.website.SiteTabs
 import org.adam.resume.website.WORD_LIST
 import org.adam.resume.website.ui.components.OrbitingWords
 import org.adam.resume.website.ui.theme.CurrentColors
+import org.adam.resume.website.ui.theme.CurrentTypography
 
 @Composable
 fun ContentSection(
@@ -91,7 +91,7 @@ fun ContentSectionPortrait(
 
                     SiteTabs.SKILLS_AND_TECHNOLOGIES -> {
                         OrbitingWords(
-                            fontSize = 14.sp,
+                            fontSize = CurrentTypography.body2.fontSize,
                             modifier = Modifier.fillMaxSize(),
                             words = WORD_LIST,
                             colors = CurrentColors.listColors,
